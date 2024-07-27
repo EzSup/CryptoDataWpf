@@ -20,5 +20,13 @@ namespace CryptoDataWpf
         {
             InitializeComponent();
         }
+
+        private void SwitchThemeClick(object sender, RoutedEventArgs e)
+        {
+            string themeName = (sender as MenuItem).Tag.ToString();
+
+            AppTheme.ChangeTheme(new Uri($"Themes/{themeName}.xaml", uriKind: UriKind.Relative));
+        }
+
     }
 }
