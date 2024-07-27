@@ -20,15 +20,21 @@ namespace CryptoDataWpf.Infrastructure.APIs
             _httpClient = factory.CreateClient("CoinCap");
         }
 
-        public async Task<ICollection<Currency>> GetAssets(string? search, int countLimit = 10)
+        public class ApiResponse
+        {
+            public List<Currency> Data { get; set; }
+            public long Timestamp { get; set; }
+        }
+
+        public async Task<ICollection<Currency>> GetAssets(string? search = null, int countLimit = 10)
         {
             try
             {
                 var response = await _httpClient.GetAsync($"/v2/assets?limit={countLimit}&search={search}");
                 response.EnsureSuccessStatusCode();
                 var responseBody = await response.Content.ReadAsStringAsync();
-                var result = JsonConvert.DeserializeObject<ICollection<Currency>>(responseBody);
-                return result ?? new List<Currency>();
+                var result = JsonConvert.DeserializeObject<ApiResponse>(responseBody);
+                return result.Data ?? new List<Currency>();
             }
             catch (HttpRequestException ex)
             {

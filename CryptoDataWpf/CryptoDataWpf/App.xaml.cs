@@ -2,8 +2,9 @@
 using System.Data;
 using System.Windows;
 using Microsoft.Extensions.DependencyInjection;
-
+using CryptoDataWpf.Application.Interfaces.Services;
 using CryptoDataWpf.Infrastructure.APIs;
+using CryptoDataWpf.ViewModels;
 
 namespace CryptoDataWpf
 {
@@ -12,19 +13,33 @@ namespace CryptoDataWpf
     /// </summary>
     public partial class App : System.Windows.Application
     {
+        private ServiceProvider _serviceProvider;
 
-        protected override void OnStartup(StartupEventArgs e)
+        private void ConfigureServices(IServiceCollection services)
         {
-            IServiceCollection services = new ServiceCollection();
-
-            //services.AddScoped<IAPIInteractionService, CoinCapService>();
+            services.AddScoped<IAPIInteractionService, CoinCapService>();
 
             services.AddHttpClient("CoinCap", client =>
             {
                 client.BaseAddress = new Uri("https://api.coincap.io/");
             });
 
+            services.AddSingleton<CurrencyViewModel>();
+            services.AddSingleton<MainWindowViewModel>();
+            services.AddSingleton<MainWindow>();
+        }
+
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            IServiceCollection services = new ServiceCollection();
+
+            ConfigureServices(services);
+            _serviceProvider = services.BuildServiceProvider();
+            
+            var mainWindow = _serviceProvider.GetRequiredService<MainWindow>();
+            mainWindow.Show();
             base.OnStartup(e);
+
         }
 
     }

@@ -26,17 +26,29 @@
         </Grid.ColumnDefinitions>
         <StackPanel Orientation="Vertical" Background="{DynamicResource Primary}"  Grid.Column="0" Grid.RowSpan="2">
             <Button Background="{DynamicResource Background}" Foreground="{DynamicResource Surface}" Width="50px" Height="50px" Margin="20px 10px 20px 10px" BorderThickness="0" Content="Гол"/>
-            <Button Background="{DynamicResource Background}" Foreground="{DynamicResource Surface}" Width="50px" Height="50px" Margin="20px 10px 20px 10px" BorderThickness="0"></Button>
+            <Button Background="{DynamicResource Background}" Foreground="{DynamicResource Surface}" Width="50px" Height="50px" Margin="20px 10px 20px 10px" BorderThickness="0" Content="Конв"></Button>
             <Button Background="{DynamicResource Background}" Foreground="{DynamicResource Surface}" Width="50px" Height="50px" Margin="20px 10px 20px 10px" BorderThickness="0"></Button>
             <Button Background="{DynamicResource Background}"  Foreground="{DynamicResource Surface}" Width="50px" Height="50px" Margin="20px 10px 20px 10px" BorderThickness="0"></Button>
         </StackPanel>
         <StackPanel Orientation="Horizontal" FlowDirection="RightToLeft" Grid.Row="0" Grid.Column="1">
-            <TextBox MaxWidth="200px" MinWidth="100px" Height="40px" Margin="10px 5px 5px 5px" Background="{DynamicResource Primary}" BorderThickness="0" Foreground="{DynamicResource Surface}"  VerticalContentAlignment="Center" HorizontalContentAlignment="Center">Пошук</TextBox>
+            <TextBox MaxWidth="200px" MinWidth="100px" Height="40px" Margin="10px 5px 5px 5px" Background="{DynamicResource Primary}" BorderThickness="0" 
+                     Foreground="{DynamicResource Surface}"  VerticalContentAlignment="Center" HorizontalContentAlignment="Center" TextAlignment="Right"></TextBox>
             <Button Width="40px" Margin="10px 5px 5px 5px"  Height="40px" Background="{DynamicResource Surface}" BorderThickness="0" Foreground="{DynamicResource Primary}">Під</Button>
         </StackPanel>
-        <Grid Background="{DynamicResource Surface}" Width="100px" Height="200px" Grid.Column="1" Grid.Row="1">            
-            <Label Content="Label" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Foreground="{DynamicResource Primary}" FontWeight="Bold"/>
-            <Label Foreground="{DynamicResource Secondary}" Content="Привіт це мій текст" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" FontSize="10"/>
+
+        <Grid Background="{DynamicResource Surface}" Grid.Column="1" Grid.Row="1">
+            <ListView ItemsSource="{Binding Currencies}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Rank" DisplayMemberBinding="{Binding Rank}" />
+                        <GridViewColumn Header="Symbol" DisplayMemberBinding="{Binding Symbol}" />
+                        <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" />
+                        <GridViewColumn Header="Price" DisplayMemberBinding="{Binding PriceUsd}" />
+                        <GridViewColumn Header="Change24Hr" DisplayMemberBinding="{Binding ChangePercent24Hr}" />
+                        <GridViewColumn Header="Vwap24Hr" DisplayMemberBinding="{Binding Vwap24Hr}" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
         </Grid>
     </Grid>
 </Window>

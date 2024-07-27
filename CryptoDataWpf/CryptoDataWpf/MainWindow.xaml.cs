@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using CryptoDataWpf.ViewModels;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -16,9 +17,19 @@ namespace CryptoDataWpf
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        private readonly MainWindowViewModel _viewModel;
+
+        public MainWindow(MainWindowViewModel viewModel)
         {
             InitializeComponent();
+            _viewModel = viewModel;
+            DataContext = _viewModel;
+            Loaded += MainWindow_Loaded;
+        }
+
+        private async void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            await _viewModel.InitializeAsync();
         }
 
         private void SwitchThemeClick(object sender, RoutedEventArgs e)
