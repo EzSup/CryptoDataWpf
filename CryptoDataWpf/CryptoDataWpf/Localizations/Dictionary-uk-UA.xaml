@@ -1,0 +1,10 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:System="clr-namespace:System;assembly=mscorlib">
+    <System:String x:Key="MenuTitle">МЕНЮ</System:String>
+    <System:String x:Key="TopCurrenciesHeader">Топ валюти</System:String>
+    <System:String x:Key="MenuOptionHome">Головна</System:String>
+    <System:String x:Key="MenuOptionExchanges">Конвертація</System:String>
+
+    <System:String x:Key="CurrencyCardLinkHeader">На біржу</System:String>
+</ResourceDictionary>

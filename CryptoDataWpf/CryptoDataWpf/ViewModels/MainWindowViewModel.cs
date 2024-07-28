@@ -21,7 +21,14 @@ namespace CryptoDataWpf.ViewModels
 
         public async Task InitializeAsync()
         {
+            await RefreshCurrenciesList();
+        }
+
+        public async Task RefreshCurrenciesList()
+        {
             var currencies = await _apiService.GetAssets();
+
+            Currencies.Clear();
 
             foreach (var currency in currencies)
             {
@@ -36,6 +43,6 @@ namespace CryptoDataWpf.ViewModels
                     Explorer = currency.Explorer
                 });
             }
-        }
+        }        
     }
 }

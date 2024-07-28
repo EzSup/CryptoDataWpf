@@ -4,6 +4,13 @@
              xmlns:local="clr-namespace:CryptoDataWpf"
              >
     <Application.Resources>
-        <ResourceDictionary Source="Themes/Dark.xaml"/>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Themes/Dark.xaml"/>
+                <ResourceDictionary Source="Localizations/Dictionary-en-US.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+
+
     </Application.Resources>
 </Application>
