@@ -5,8 +5,73 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CryptoDataWpf"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800"
+        Title="MainWindow" Height="500" Width="820"
         Background="{DynamicResource Background}">
+    <Window.Resources>
+        <ImageBrush x:Key="ToggleButtonMouseOver" ImageSource="assets/images/menu_active_img.png" />
+
+        <Style x:Key="FontStyle" TargetType="TextBlock">
+            <Setter Property="FontFamily"
+                    Value="assets/fonts/Monsterrat-Regular.ttf"/>
+            <Setter Property="VerticalAlignment"
+                    Value="Center"/>
+            <Setter Property="HorizontalAlignment"
+                    Value="Left"/>
+            <Setter Property="Foreground"
+                    Value="{StaticResource Surface}"/>
+            <Setter Property="FontSize"
+                    Value="20"/>
+        </Style>
+
+        <Style TargetType="ToolTip" x:Key="ToolTipStyle">
+            <Setter Property="Placement" Value="Right"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Width" Value="100"/>
+            <Setter Property="Margin" Value="20,0,0,0"/>
+            <Setter Property="Background" Value="{StaticResource Background}"/>
+            <Setter Property="Foreground" Value="{StaticResource Secondary}"/>
+            <Setter Property="VerticalOffset" Value="6"/>
+            <Setter Property="HorizontalOffset" Value="15"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="HasDropShadow" Value="True"/>
+        </Style>
+
+        <Style x:Key="ToggleButtonStyle" TargetType="{x:Type ToggleButton}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ToggleButton}">
+                        <Border x:Name="Border" BorderThickness="{TemplateBinding BorderThickness}"
+                                Background="{TemplateBinding Background}"
+                                SnapsToDevicePixels="True">
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background"
+                                        TargetName="Border"
+                                        Value="{StaticResource ToggleButtonMouseOver}"/>
+                                <Setter Property="BorderBrush"
+                                        TargetName="Border"
+                                        Value="{StaticResource ToggleButtonMouseOver}"/>
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter Property="Background"
+                                        TargetName="Border"
+                                        Value="{StaticResource ToggleButtonMouseOver}">
+                                </Setter>
+                                <Setter Property="BorderBrush"
+                                        TargetName="Border"
+                                        Value="{StaticResource ToggleButtonMouseOver}">
+
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
     <Window.ContextMenu>
         <ContextMenu>
             <MenuItem Header="Theme">
@@ -15,40 +80,156 @@
             </MenuItem>
         </ContextMenu>
     </Window.ContextMenu>
-    <Grid>
+    <Grid Background="{DynamicResource Background}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="50px"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="100px"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <StackPanel Orientation="Vertical" Background="{DynamicResource Primary}"  Grid.Column="0" Grid.RowSpan="2">
-            <Button Background="{DynamicResource Background}" Foreground="{DynamicResource Surface}" Width="50px" Height="50px" Margin="20px 10px 20px 10px" BorderThickness="0" Content="Гол"/>
-            <Button Background="{DynamicResource Background}" Foreground="{DynamicResource Surface}" Width="50px" Height="50px" Margin="20px 10px 20px 10px" BorderThickness="0" Content="Конв"></Button>
-            <Button Background="{DynamicResource Background}" Foreground="{DynamicResource Surface}" Width="50px" Height="50px" Margin="20px 10px 20px 10px" BorderThickness="0"></Button>
-            <Button Background="{DynamicResource Background}"  Foreground="{DynamicResource Surface}" Width="50px" Height="50px" Margin="20px 10px 20px 10px" BorderThickness="0"></Button>
-        </StackPanel>
+        <Grid x:Name="NavPanel"
+              HorizontalAlignment="Left"
+              Width="65"
+              Background="{DynamicResource Primary}"
+              Grid.Column="0" Grid.RowSpan="2">
+            <StackPanel x:Name="NavStackPanel" Orientation="Vertical" Background="{DynamicResource Primary}"  Grid.Column="0" Grid.RowSpan="2">
+                <Grid Height="90">
+                    <TextBlock Grid.Row="1" Grid.Column="0" Margin="73,-20,0,0" 
+                               Text="MENU" Foreground="{StaticResource  Surface}" 
+                               FontSize="22" Background="Transparent"
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Center"
+                               Style="{StaticResource FontStyle}">
+                    </TextBlock>
+                    <ToggleButton x:Name="MenuButton" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="18, -20,0,0"
+                                  Width="30" Height="30" BorderThickness="0" Style="{StaticResource ToggleButtonStyle}">
+                        <ToggleButton.Background>
+                            <ImageBrush ImageSource="Assets/images/menu_img.png" />
+                        </ToggleButton.Background>
+                        <ToggleButton.Triggers>
+                            <EventTrigger RoutedEvent="ToggleButton.Unchecked">
+                                <BeginStoryboard>
+                                    <Storyboard x:Name="HideNavPanel">
+                                        <DoubleAnimation
+                                            Storyboard.TargetName="NavPanel"
+                                            Storyboard.TargetProperty="Width"
+                                            BeginTime="0:0:0"
+                                            From="180" To="65"
+                                            Duration="0:0:0.2">
+
+                                        </DoubleAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                            <EventTrigger RoutedEvent="ToggleButton.Checked">
+                                <BeginStoryboard>
+                                    <Storyboard x:Name="ShowNavPanel">
+                                        <DoubleAnimation
+                                            Storyboard.TargetName="NavPanel"
+                                            Storyboard.TargetProperty="Width"
+                                            BeginTime="0:0:0"
+                                            From="65" To="180"
+                                            Duration="0:0:0.3"></DoubleAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </ToggleButton.Triggers>
+                    </ToggleButton>
+                </Grid>
+
+                <ListView x:Name="MenuOptions"
+                          Background="Transparent"
+                          BorderBrush="Transparent"
+                          ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                    <ListViewItem HorizontalAlignment="Left"
+                                  Margin="0,0,0,10"
+                                  Height="40"
+                                  >
+                        <StackPanel Orientation="Horizontal"
+                                    Width="230">
+                            <Image Source="assets/images/home_img.png" 
+                                   Margin="5,0,0,0"/>
+                            <TextBlock Text="Home"
+                                       Margin="25,0,0,0"
+                                       Style="{StaticResource FontStyle}"
+                                       />
+                        </StackPanel>
+                        <ListViewItem.ToolTip>
+                            <ToolTip x:Name="ToolTipHome" 
+                                     Content="Exchanges"
+                                     Style="{StaticResource ToolTipStyle}"/>
+                        </ListViewItem.ToolTip>
+                    </ListViewItem>
+                    <ListViewItem HorizontalAlignment="Left"
+                                    Margin="0,0,0,10"
+                                    Height="40"
+                                    >
+                        <StackPanel Orientation="Horizontal"
+                                    Width="230">
+                            <Image Source="assets/images/exchange_img.png" 
+                                   Margin="5,0,0,0"/>
+                            <TextBlock Text="Exchanges"
+                                        Margin="25,0,0,0"
+                                        Style="{StaticResource FontStyle}"/>
+                        </StackPanel>
+                        <ListViewItem.ToolTip>
+                            <ToolTip x:Name="ToolTipExchanges" 
+                                        Content="Exchanges"
+                                        Style="{StaticResource ToolTipStyle}"/>
+                        </ListViewItem.ToolTip>
+                    </ListViewItem>
+
+                </ListView>
+
+            </StackPanel>
+        </Grid>
+
         <StackPanel Orientation="Horizontal" FlowDirection="RightToLeft" Grid.Row="0" Grid.Column="1">
-            <TextBox MaxWidth="200px" MinWidth="100px" Height="40px" Margin="10px 5px 5px 5px" Background="{DynamicResource Primary}" BorderThickness="0" 
+            <TextBox MinWidth="200" Height="40px" Margin="10px 5px 5px 5px" Background="{DynamicResource Primary}" BorderThickness="0" 
                      Foreground="{DynamicResource Surface}"  VerticalContentAlignment="Center" HorizontalContentAlignment="Center" TextAlignment="Right"></TextBox>
-            <Button Width="40px" Margin="10px 5px 5px 5px"  Height="40px" Background="{DynamicResource Surface}" BorderThickness="0" Foreground="{DynamicResource Primary}">Під</Button>
+            <Button Width="40px" Margin="10px 5px 5px 5px"  Height="40px" BorderThickness="0" Foreground="{DynamicResource Primary}" Background="{DynamicResource Surface}">
+                <Image Source="Assets/Images/Search_img.png" Stretch="Uniform" Margin="3"/>
+            </Button>
         </StackPanel>
 
-        <Grid Background="{DynamicResource Surface}" Grid.Column="1" Grid.Row="1">
-            <ListView ItemsSource="{Binding Currencies}">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Header="Rank" DisplayMemberBinding="{Binding Rank}" />
-                        <GridViewColumn Header="Symbol" DisplayMemberBinding="{Binding Symbol}" />
-                        <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" />
-                        <GridViewColumn Header="Price" DisplayMemberBinding="{Binding PriceUsd}" />
-                        <GridViewColumn Header="Change24Hr" DisplayMemberBinding="{Binding ChangePercent24Hr}" />
-                        <GridViewColumn Header="Vwap24Hr" DisplayMemberBinding="{Binding Vwap24Hr}" />
-                    </GridView>
-                </ListView.View>
-            </ListView>
+        <Grid Background="{DynamicResource Background}" Grid.Column="1" Grid.Row="1">
+            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                <StackPanel>
+                    <TextBlock Margin="20,0,0,0" Foreground="{DynamicResource Surface}" FontWeight="DemiBold" Text="Top Currencies" FontSize="25"/>
+                    <ItemsControl x:Name="ListViewCurrencies" ItemsSource="{Binding Currencies}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border Margin="10" Width="126" Height="160" Background="{StaticResource Surface}" CornerRadius="15">
+                                    <StackPanel>
+                                        <TextBlock Margin="5 0" Text="{Binding Symbol}" Foreground="{StaticResource Primary}" FontSize="36" FontWeight="ExtraBold" />
+                                        <TextBlock Margin="5 0" Text="{Binding Name}" FontSize="16" FontStyle="Italic" FontWeight="ExtraBold" Foreground="{StaticResource  Secondary}"/>
+                                        <TextBlock Margin="5 0" Text="{Binding PriceUsd, StringFormat={}{0:C}}" FontSize="18" FontStyle="Italic" FontWeight="Bold" HorizontalAlignment="Left" Foreground="{StaticResource  Secondary}"/>
+
+                                        <WrapPanel Orientation="Horizontal" Margin="0 5">
+                                            <TextBlock Margin="5 0" Text="24h%" FontSize="15" HorizontalAlignment="Left" FontStyle="Italic" FontWeight="SemiBold" Foreground="{StaticResource  Secondary}"/>
+                                            <TextBlock Margin="16 0 0 0" Text="{Binding ChangePercent24Hr, StringFormat={}{0:F}%}" FontSize="15" HorizontalAlignment="Right" FontWeight="Bold" FontStyle="Italic" Foreground="{StaticResource  Secondary}"/>
+                                        </WrapPanel>
+                                        <Separator Margin="5" Background="{StaticResource Background}"/>
+                                        <TextBlock FontStyle="Italic" FontSize="15" HorizontalAlignment="Center"  Foreground="{StaticResource Secondary}">           
+                                            <Hyperlink NavigateUri="{Binding Explorer}" RequestNavigate="Hyperlink_RequestNavigate" TextDecorations="None">
+                                                Market link
+                                            </Hyperlink>
+                                        </TextBlock>
+
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                    </ItemsControl>
+                </StackPanel>
+            </ScrollViewer>
         </Grid>
     </Grid>
 </Window>

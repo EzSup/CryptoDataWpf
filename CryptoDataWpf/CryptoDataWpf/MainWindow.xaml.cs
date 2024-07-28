@@ -1,4 +1,5 @@
 ﻿using CryptoDataWpf.ViewModels;
+using System.Diagnostics;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -37,6 +38,16 @@ namespace CryptoDataWpf
             string themeName = (sender as MenuItem).Tag.ToString();
 
             AppTheme.ChangeTheme(new Uri($"Themes/{themeName}.xaml", uriKind: UriKind.Relative));
+        }
+
+        private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)
+        {
+            var sInfo = new System.Diagnostics.ProcessStartInfo(e.Uri.AbsoluteUri)
+            {
+                UseShellExecute = true,
+            };
+            System.Diagnostics.Process.Start(sInfo);
+            e.Handled = true;
         }
 
     }

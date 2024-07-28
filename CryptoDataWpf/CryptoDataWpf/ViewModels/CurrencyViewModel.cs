@@ -34,17 +34,17 @@ namespace CryptoDataWpf.ViewModels
         }
         public decimal PriceUsd
         {
-            get { return Math.Round(_priceUsd, 2); }
+            get { return _priceUsd; }
             set { _priceUsd = value; OnPropertyChanged(nameof(PriceUsd)); }
         }
         public decimal ChangePercent24Hr
         {
-            get { return Math.Round(_changePercent24Hr, 2); }
+            get { return _changePercent24Hr; }
             set { _changePercent24Hr = value; OnPropertyChanged(nameof(ChangePercent24Hr)); }
         }
         public decimal Vwap24Hr
         {
-            get { return Math.Round(_vwap24Hr,2); }
+            get { return _vwap24Hr; }
             set { _vwap24Hr = value; OnPropertyChanged(nameof(Vwap24Hr)); }
         }
         public string? Explorer
