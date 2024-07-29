@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using CryptoDataWpf.Pages;
 
 namespace CryptoDataWpf
 {
@@ -20,17 +21,10 @@ namespace CryptoDataWpf
     {
         private readonly MainWindowViewModel _viewModel;
 
-        public MainWindow(MainWindowViewModel viewModel)
+        public MainWindow(TopList firstPage)
         {
             InitializeComponent();
-            _viewModel = viewModel;
-            DataContext = _viewModel;
-            Loaded += MainWindow_Loaded;
-        }
-
-        private async void MainWindow_Loaded(object sender, RoutedEventArgs e)
-        {
-            await _viewModel.InitializeAsync();
+            mainContent.Navigate(firstPage);
         }
 
         private void SwitchThemeClick(object sender, RoutedEventArgs e)

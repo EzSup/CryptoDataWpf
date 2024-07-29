@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using CryptoDataWpf.Application.Interfaces.Services;
 using CryptoDataWpf.Infrastructure.APIs;
 using CryptoDataWpf.ViewModels;
+using CryptoDataWpf.Pages;
 
 namespace CryptoDataWpf
 {
@@ -26,6 +27,7 @@ namespace CryptoDataWpf
 
             services.AddSingleton<CurrencyViewModel>();
             services.AddSingleton<MainWindowViewModel>();
+            services.AddSingleton<TopList, TopList>();
             services.AddSingleton<MainWindow>();
         }
 
