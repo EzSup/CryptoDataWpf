@@ -22,9 +22,9 @@ namespace CryptoDataWpf.Pages
     public partial class TopList : Page
     {
 
-        private readonly MainWindowViewModel _viewModel;
+        private readonly TopListViewModel _viewModel;
 
-        public TopList(MainWindowViewModel viewModel)
+        public TopList(TopListViewModel viewModel)
         {
             InitializeComponent();
             _viewModel = viewModel;

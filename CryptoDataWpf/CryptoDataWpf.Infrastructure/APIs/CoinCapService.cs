@@ -8,6 +8,7 @@ using System.Text.Json.Serialization;
 using Newtonsoft.Json;
 using CryptoDataWpf.Core.Models;
 using CryptoDataWpf.Application.Interfaces.Services;
+using CryptoDataWpf.Core.CustomExceptions;
 
 namespace CryptoDataWpf.Infrastructure.APIs
 {
@@ -46,6 +47,15 @@ namespace CryptoDataWpf.Infrastructure.APIs
                 Console.Error.WriteLine($"Unexpected error: {ex.Message}");
                 return new List<Currency>();
             }
+        }   
+        
+
+        public async Task<Currency> GetAsset(string search)
+        {
+            var asset =  (await GetAssets(search, 1)).FirstOrDefault();
+            if (asset is null)
+                throw new CurrencyNotFoundException(search);
+            return asset;
         }
     }
 }

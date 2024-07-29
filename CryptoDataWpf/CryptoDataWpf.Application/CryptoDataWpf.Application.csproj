@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Services\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\CryptoDataWpf.Core\CryptoDataWpf.Core.csproj" />
   </ItemGroup>
 

@@ -6,6 +6,7 @@ using CryptoDataWpf.Application.Interfaces.Services;
 using CryptoDataWpf.Infrastructure.APIs;
 using CryptoDataWpf.ViewModels;
 using CryptoDataWpf.Pages;
+using CryptoDataWpf.Application.Services;
 
 namespace CryptoDataWpf
 {
@@ -19,6 +20,7 @@ namespace CryptoDataWpf
         private void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<IAPIInteractionService, CoinCapService>();
+            services.AddScoped<ICurrencyCalculationsService, CurrencyCalculationsService>();
 
             services.AddHttpClient("CoinCap", client =>
             {
@@ -26,9 +28,11 @@ namespace CryptoDataWpf
             });
 
             services.AddSingleton<CurrencyViewModel>();
-            services.AddSingleton<MainWindowViewModel>();
+            services.AddScoped<TopListViewModel>();
             services.AddSingleton<TopList, TopList>();
+            services.AddSingleton<MainWindowViewModel>();
             services.AddSingleton<MainWindow>();
+            
         }
 
         protected override void OnStartup(StartupEventArgs e)

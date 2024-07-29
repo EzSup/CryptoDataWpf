@@ -11,6 +11,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using CryptoDataWpf.Pages;
+using CryptoDataWpf.Application.Interfaces.Services;
 
 namespace CryptoDataWpf
 {
@@ -19,19 +20,20 @@ namespace CryptoDataWpf
     /// </summary>
     public partial class MainWindow : Window
     {
-        private readonly MainWindowViewModel _viewModel;
 
-        public MainWindow(TopList firstPage)
+        public MainWindow(MainWindowViewModel viewModel, TopList firstPage)
         {
+            viewModel.CurrentView = firstPage;
+            this.DataContext = viewModel;
             InitializeComponent();
-            mainContent.Navigate(firstPage);
-        }
+        }               
 
         private void SwitchThemeClick(object sender, RoutedEventArgs e)
         {
             string themeName = (sender as MenuItem).Tag.ToString();
 
             AppTheme.ChangeTheme(new Uri($"Themes/{themeName}.xaml", uriKind: UriKind.Relative));
+
         }
 
         private void SetLanguageClick(object sender, RoutedEventArgs e)

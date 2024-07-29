@@ -230,14 +230,14 @@
         </Grid>
 
         <StackPanel Orientation="Horizontal" FlowDirection="RightToLeft" Grid.Row="0" Grid.Column="1">
-            <TextBox MinWidth="200" Height="40px" Margin="10px 5px 5px 5px" Background="{DynamicResource Primary}" BorderThickness="0" 
+            <TextBox Text="{Binding CurrencyCode}" MinWidth="200" Height="40px" Margin="10px 5px 5px 5px" Background="{DynamicResource Primary}" BorderThickness="0" 
                      Foreground="{DynamicResource Surface}"  VerticalContentAlignment="Center" HorizontalContentAlignment="Center" TextAlignment="Right"></TextBox>
-            <Button Width="40px" Margin="10px 5px 5px 5px"  Height="40px" BorderThickness="0" Foreground="{DynamicResource Primary}" Background="{DynamicResource Surface}">
+            <Button Command="{Binding SearchCurrencyCommand}" Width="40px" Margin="10px 5px 5px 5px"  Height="40px" BorderThickness="0" Foreground="{DynamicResource Primary}" Background="{DynamicResource Surface}">
                 <Image Source="Assets/Images/Search_img.png" Stretch="Uniform" Margin="3"/>
             </Button>
         </StackPanel>
 
-        <Frame Name="mainContent" Background="{DynamicResource Background}" Grid.Column="1" Grid.Row="1" />
+        <Frame Name="mainContent" Background="{DynamicResource Background}" Grid.Column="1" Grid.Row="1" Content="{Binding CurrentView}" NavigationUIVisibility="Hidden"/>
 
     </Grid>
 </Window>

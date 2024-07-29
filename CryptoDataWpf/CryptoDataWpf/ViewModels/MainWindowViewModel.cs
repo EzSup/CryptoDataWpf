@@ -1,48 +1,70 @@
 ﻿using CryptoDataWpf.Application.Interfaces.Services;
+using CryptoDataWpf.Commands;
+using CryptoDataWpf.Pages;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using System.Windows.Navigation;
 
 namespace CryptoDataWpf.ViewModels
 {
-    public class MainWindowViewModel
+    public class MainWindowViewModel : INotifyPropertyChanged
     {
-        public ObservableCollection<CurrencyViewModel> Currencies { get; set; }
         private readonly IAPIInteractionService _apiService;
+        private string _currencyCode;
+        private object _currentView;
+
+        public object CurrentView
+        {
+            get => _currentView;
+            set
+            {
+                _currentView = value;
+                OnPropertyChanged(nameof(CurrentView));
+            }
+        }
+
+        public string CurrencyCode
+        {
+            get => _currencyCode;
+            set
+            {
+                _currencyCode = value;
+                OnPropertyChanged(nameof(CurrencyCode));
+            }
+        }
 
         public MainWindowViewModel(IAPIInteractionService apiService)
         {
-            Currencies = new ObservableCollection<CurrencyViewModel>();
             _apiService = apiService;
+
+            SearchCurrencyCommand = new RelayCommand(SearchCurrency, CanSearchCurrency);
         }
 
-        public async Task InitializeAsync()
+        private bool CanSearchCurrency(object obj)
         {
-            await RefreshCurrenciesList();
+            return true;
         }
 
-        public async Task RefreshCurrenciesList()
+        private async void SearchCurrency(object obj)
         {
-            var currencies = await _apiService.GetAssets();
+            var currencyDataViewModel = new CurrencyDataViewModel(_apiService, CurrencyCode);
+            var currencyDetailView = new CurrencyData() { DataContext = currencyDataViewModel};
+            CurrentView = currencyDetailView;
+        }
 
-            Currencies.Clear();
+        public ICommand SearchCurrencyCommand { get; set; }
 
-            foreach (var currency in currencies)
-            {
-                Currencies.Add(new CurrencyViewModel
-                {
-                    Name = currency.Name,
-                    Symbol = currency.Symbol,
-                    Rank = currency.Rank,
-                    PriceUsd = currency.PriceUsd,
-                    ChangePercent24Hr = currency.ChangePercent24Hr,
-                    Vwap24Hr = currency.Vwap24Hr,
-                    Explorer = currency.Explorer
-                });
-            }
-        }        
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }
