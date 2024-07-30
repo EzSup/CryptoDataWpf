@@ -15,6 +15,7 @@
     <None Remove="assets\images\Menu_animation.gif" />
     <None Remove="Assets\Images\Menu_img.png" />
     <None Remove="assets\images\Search_img.png" />
+    <None Remove="assets\images\swap_img.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -38,6 +39,7 @@
     <Resource Include="assets\images\Menu_animation.gif" />
     <Resource Include="Assets\Images\Menu_img.png" />
     <Resource Include="assets\images\Search_img.png" />
+    <Resource Include="assets\images\swap_img.png" />
   </ItemGroup>
 
 </Project>

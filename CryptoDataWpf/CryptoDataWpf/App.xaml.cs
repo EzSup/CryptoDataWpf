@@ -32,7 +32,8 @@ namespace CryptoDataWpf
             services.AddSingleton<TopList, TopList>();
             services.AddSingleton<MainWindowViewModel>();
             services.AddSingleton<MainWindow>();
-            
+            services.AddSingleton<ExchangesViewModel>();
+            services.AddSingleton<Exchanges>();
         }
 
         protected override void OnStartup(StartupEventArgs e)

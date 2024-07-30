@@ -7,10 +7,41 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Localizations/Dictionary-en-US.xaml"/>
-                <ResourceDictionary Source="Themes/Dark.xaml"/>                
+                <ResourceDictionary Source="Themes/Dark.xaml"/>
+                <ResourceDictionary>
+                    <Style x:Key="SearchButton" TargetType="Button">
+                        <Setter Property="Width" Value="40"/>
+                        <Setter Property="Height" Value="40"/>
+                        <Setter Property="Margin" Value="10px 5px 5px 5px"/>
+                        <Setter Property="BorderThickness" Value="0"/>
+                        <Setter Property="Foreground" Value="{DynamicResource Primary}"/>
+                        <Setter Property="Background" Value="{DynamicResource Surface}"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Grid Background="{DynamicResource Surface}">
+                                    <Image Source="Assets/Images/Search_img.png" Stretch="Uniform" Margin="3"/>
+                                    </Grid>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                    <Style x:Key="SearchInput" TargetType="TextBox">
+                        <Setter Property="FontSize" Value="20"/>
+                        <Setter Property="MinWidth" Value="200"/>
+                        <Setter Property="Height" Value="40px"/>
+                        <Setter Property="Margin" Value="10px 5px 5px 5px"/>
+                        <Setter Property="Background" Value="{DynamicResource Primary}"/>
+                        <Setter Property="BorderThickness" Value="0"/>
+                        <Setter Property="Foreground" Value="{DynamicResource Surface}"/>
+                        <Setter Property="VerticalContentAlignment" Value="Center"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                        <Setter Property="TextAlignment" Value="Right"/>                        
+                    </Style>
+                </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
-
-
     </Application.Resources>
 </Application>
+
+

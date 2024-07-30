@@ -17,6 +17,7 @@ namespace CryptoDataWpf.ViewModels
     public class MainWindowViewModel : INotifyPropertyChanged
     {
         private readonly IAPIInteractionService _apiService;
+        private readonly ICurrencyCalculationsService _calculationsService;
         private string _currencyCode;
         private object _currentView;
 
@@ -40,9 +41,10 @@ namespace CryptoDataWpf.ViewModels
             }
         }
 
-        public MainWindowViewModel(IAPIInteractionService apiService)
+        public MainWindowViewModel(IAPIInteractionService apiService, ICurrencyCalculationsService calculationsService)
         {
             _apiService = apiService;
+            _calculationsService = calculationsService;
 
             SearchCurrencyCommand = new RelayCommand(SearchCurrency, CanSearchCurrency);
             SwitchPagesCommand = new RelayCommand(SwitchPage, CanSwitchPages);   
@@ -67,8 +69,11 @@ namespace CryptoDataWpf.ViewModels
                     TopList topListPage = new TopList(new(_apiService));
                     CurrentView = topListPage;
                     return;
-                //case "Exchange":
-                //    return;
+                case "Exchange":
+                    var viewModel = new ExchangesViewModel(_apiService, _calculationsService);
+                    Exchanges exchangesPage =  new Exchanges(viewModel);
+                    CurrentView = exchangesPage;
+                    return;
                 default:
                     SearchCurrency(pageName);                    
                     return;

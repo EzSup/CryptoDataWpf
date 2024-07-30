@@ -1,0 +1,64 @@
+﻿<Page x:Class="CryptoDataWpf.Pages.Exchanges"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CryptoDataWpf.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Exchanges">
+
+    <Grid Background="{DynamicResource Background}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition />
+
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="160"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Column="0" Grid.Row="0" Orientation="Horizontal">
+            <Button Command="{Binding SetCurrencyCommand}"  CommandParameter="toBeExchangedCurrency" Style="{StaticResource SearchButton}" Margin="20 0 10 0"/>
+            <TextBox Text="{Binding ToBeExchangedCurrencyCode}" Style="{StaticResource SearchInput}" ></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="0">
+            <TextBlock Text="{Binding ToBeExchangedCurrency.Symbol}" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" FontSize="70" Foreground="{DynamicResource Surface}" Margin="20 0" />
+            <TextBlock Text="{Binding ToBeExchangedCurrency.PriceUsd, StringFormat={}{0:C}}" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="30" Foreground="{DynamicResource Surface}" Margin="20 10" />
+        </StackPanel>
+
+        <StackPanel  Grid.Row="2" Orientation="Horizontal">
+            <TextBox Text="{Binding ToBeExchangedCurrencyAmount}" Style="{StaticResource SearchInput}" Height="60" FontSize="40" Margin="20 0"></TextBox>
+            <TextBlock Text="{Binding ToBeExchangedCurrency.Symbol}"   FontSize="40" Foreground="{DynamicResource Surface}" VerticalAlignment="Center"></TextBlock>
+        </StackPanel>
+        
+
+        <Button Command="{Binding SwapCurrenciesCommand}" Grid.Column="1" Grid.Row="1" Background="Transparent" BorderThickness="0">
+            <Image Source="../assets/images/swap_img.png"  Stretch="Uniform" Margin="3"/>
+        </Button>
+
+        <Button Command="{Binding ExchangeCommand}" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center"  Foreground="{DynamicResource Surface}" Background="Transparent" BorderThickness="0">
+            <TextBlock VerticalAlignment="Center" Margin="0 0 0 20" FontSize="100">
+                   =
+            </TextBlock>
+        </Button>
+
+        <StackPanel Grid.Column="2" Grid.Row="0" Orientation="Horizontal">
+            <Button Command="{Binding SetCurrencyCommand}" CommandParameter="targetCurrency" Style="{StaticResource SearchButton}" Margin="20 0 10 0"/>
+            <TextBox Text="{Binding TargetCurrencyCode}" Style="{StaticResource SearchInput}"></TextBox>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Grid.Column="2">
+            <TextBlock Text="{Binding TargetCurrency.Symbol}" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" FontSize="70" Foreground="{DynamicResource Surface}" Margin="20 0"/>
+            <TextBlock Text="{Binding TargetCurrency.PriceUsd, StringFormat={}{0:C}}"  HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="30" Foreground="{DynamicResource Surface}" Margin="20 10" />
+        </StackPanel>
+
+        <StackPanel  Grid.Row="2" Grid.Column="2" Orientation="Horizontal">
+            <TextBlock Text="{Binding TargetCurrencyAmount, StringFormat={}{0:F2}}" VerticalAlignment="Center" FontSize="40" Foreground="{DynamicResource Surface}" />
+            <TextBlock Text="{Binding TargetCurrency.Symbol}" FontSize="40" VerticalAlignment="Center" Margin="20 0" Foreground="{DynamicResource Surface}"/>
+        </StackPanel>
+    </Grid>
+</Page>

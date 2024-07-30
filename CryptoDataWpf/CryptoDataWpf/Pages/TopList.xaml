@@ -11,7 +11,6 @@
     <Grid Background="{DynamicResource Background}">
         <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
             <StackPanel>
-                <TextBlock Text="{DynamicResource TopCurrenciesHeader}" Margin="20,0,0,0" Foreground="{DynamicResource Surface}" FontWeight="DemiBold"  FontSize="25"/>
                 <ItemsControl x:Name="ListViewCurrencies" ItemsSource="{Binding Currencies}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>

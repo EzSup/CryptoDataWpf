@@ -10,6 +10,7 @@
     <Window.Resources>
         <ImageBrush x:Key="ToggleButtonMouseOver" ImageSource="assets/images/menu_active_img.png" />
 
+
         <Style x:Key="FontStyle" TargetType="TextBlock">
             <Setter Property="FontFamily"
                     Value="assets/fonts/Monsterrat-Regular.ttf"/>
@@ -33,7 +34,7 @@
             <Setter Property="VerticalOffset" Value="6"/>
             <Setter Property="HorizontalOffset" Value="15"/>
             <Setter Property="FontSize" Value="16"/>
-            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Surface}"/>
             <Setter Property="HorizontalContentAlignment" Value="Center" />
             <Setter Property="HasDropShadow" Value="True"/>
         </Style>
@@ -88,6 +89,7 @@
     <Grid Background="{DynamicResource Background}">
         <Grid.RowDefinitions>
             <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="5"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -98,7 +100,7 @@
               HorizontalAlignment="Left"
               Width="65"
               Background="{DynamicResource Primary}"
-              Grid.Column="0" Grid.RowSpan="2">
+              Grid.Column="0" Grid.RowSpan="3">
             <StackPanel x:Name="NavStackPanel" Orientation="Vertical" Background="{DynamicResource Primary}"  Grid.Column="0" Grid.RowSpan="2">
                 <Grid Height="90">
                     <TextBlock Grid.Row="1" Grid.Column="0" Margin="73,-20,0,0" 
@@ -238,15 +240,15 @@
             </StackPanel>
         </Grid>
 
-        <StackPanel Orientation="Horizontal" FlowDirection="RightToLeft" Grid.Row="0" Grid.Column="1">
-            <TextBox Text="{Binding CurrencyCode}" FontSize="20" MinWidth="200" Height="40px" Margin="10px 5px 5px 5px" Background="{DynamicResource Primary}" BorderThickness="0" 
-                     Foreground="{DynamicResource Surface}"  VerticalContentAlignment="Center" HorizontalContentAlignment="Center" TextAlignment="Right"></TextBox>
-            <Button Command="{Binding SearchCurrencyCommand}" Width="40px" Margin="10px 5px 5px 5px"  Height="40px" BorderThickness="0" Foreground="{DynamicResource Primary}" Background="{DynamicResource Surface}">
-                <Image Source="Assets/Images/Search_img.png" Stretch="Uniform" Margin="3"/>
-            </Button>
-        </StackPanel>
+            <StackPanel Orientation="Horizontal" FlowDirection="RightToLeft" Grid.Row="0" Grid.Column="1">
+                <TextBox Text="{Binding CurrencyCode}" Style="{StaticResource SearchInput}"></TextBox>
+                <Button Command="{Binding SearchCurrencyCommand}" Style="{StaticResource SearchButton}" />
+                <TextBlock Text="{Binding CurrentView.Title}"  Margin="20,0,0,0" Foreground="{DynamicResource Surface}" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="DemiBold"  FontSize="25"/>
+            </StackPanel>
+        <Grid Height="5" Background="{DynamicResource Surface}"  Grid.Column="1" Grid.Row="1"/>
 
-        <Frame Name="mainContent" Background="{DynamicResource Background}" Grid.Column="1" Grid.Row="1" Content="{Binding CurrentView}" NavigationUIVisibility="Hidden"/>
+
+        <Frame Name="mainContent" Background="{DynamicResource Background}" Grid.Column="1" Grid.Row="2" Content="{Binding CurrentView}" NavigationUIVisibility="Hidden"/>
 
     </Grid>
 </Window>

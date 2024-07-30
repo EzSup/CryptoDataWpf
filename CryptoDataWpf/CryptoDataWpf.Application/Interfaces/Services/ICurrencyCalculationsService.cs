@@ -9,6 +9,6 @@ namespace CryptoDataWpf.Application.Interfaces.Services
 {
     public interface ICurrencyCalculationsService
     {
-        decimal ExchangeCurrencies(Currency firstCurrency, Currency secondCurrency);
+        decimal ExchangeCurrencies(Currency firstCurrency, Currency secondCurrency, decimal firstCurrencyAmount);
     }
 }

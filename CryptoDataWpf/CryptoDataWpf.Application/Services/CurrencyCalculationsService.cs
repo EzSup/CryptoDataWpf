@@ -11,9 +11,9 @@ namespace CryptoDataWpf.Application.Services
     public class CurrencyCalculationsService : ICurrencyCalculationsService
     {
 
-        public decimal ExchangeCurrencies(Currency firstCurrency, Currency secondCurrency)
+        public decimal ExchangeCurrencies(Currency firstCurrency, Currency secondCurrency, decimal firstCurrencyAmount)
         {
-            return firstCurrency.PriceUsd / secondCurrency.PriceUsd;
+            return firstCurrency.PriceUsd / secondCurrency.PriceUsd * firstCurrencyAmount;
         }
     }
 }
