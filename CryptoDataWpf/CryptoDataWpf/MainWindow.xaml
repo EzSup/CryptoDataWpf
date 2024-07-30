@@ -149,8 +149,12 @@
                           BorderBrush="Transparent"
                           ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                     <ListViewItem HorizontalAlignment="Left"
-                                  Margin="0,0,0,10"
-                                  >
+                                  Margin="0,0,0,10" MouseLeftButtonUp="NavMenuItemClick" >
+                        <ListViewItem.InputBindings>
+                            <MouseBinding Gesture="LeftClick"
+                                  Command="{Binding SwitchPagesCommand}"
+                                  CommandParameter="Main"  />
+                        </ListViewItem.InputBindings>
                         <StackPanel Orientation="Horizontal"
                                     Width="180">
                             <Image Source="assets/images/home_img.png" 
@@ -160,7 +164,8 @@
                             <TextBlock Text="{DynamicResource MenuOptionHome}"
                                        Margin="25,0,0,0"
                                        Style="{StaticResource FontStyle}"
-                                       />
+                                       >
+                            </TextBlock>
                         </StackPanel>
                         <ListViewItem.ToolTip>
                             <ToolTip x:Name="ToolTipHome" 
@@ -169,8 +174,12 @@
                         </ListViewItem.ToolTip>
                     </ListViewItem>
                     <ListViewItem HorizontalAlignment="Left"
-                                    Margin="0,0,0,10"
-                                    >
+                                    Margin="0,0,0,10">
+                        <ListViewItem.InputBindings>
+                            <MouseBinding Gesture="LeftClick"
+                                            Command="{Binding SwitchPagesCommand}"
+                                          CommandParameter="Exchange" />
+                        </ListViewItem.InputBindings>
                         <StackPanel Orientation="Horizontal"
                                     Width="180">
                             <Image Source="assets/images/exchange_img.png" 
@@ -187,7 +196,7 @@
                                         Style="{StaticResource ToolTipStyle}"/>
                         </ListViewItem.ToolTip>
                     </ListViewItem>
-                    
+
                     <ListView.ItemContainerStyle>
                         <Style TargetType="ListViewItem">
                             <Setter Property="Template">
@@ -230,7 +239,7 @@
         </Grid>
 
         <StackPanel Orientation="Horizontal" FlowDirection="RightToLeft" Grid.Row="0" Grid.Column="1">
-            <TextBox Text="{Binding CurrencyCode}" MinWidth="200" Height="40px" Margin="10px 5px 5px 5px" Background="{DynamicResource Primary}" BorderThickness="0" 
+            <TextBox Text="{Binding CurrencyCode}" FontSize="20" MinWidth="200" Height="40px" Margin="10px 5px 5px 5px" Background="{DynamicResource Primary}" BorderThickness="0" 
                      Foreground="{DynamicResource Surface}"  VerticalContentAlignment="Center" HorizontalContentAlignment="Center" TextAlignment="Right"></TextBox>
             <Button Command="{Binding SearchCurrencyCommand}" Width="40px" Margin="10px 5px 5px 5px"  Height="40px" BorderThickness="0" Foreground="{DynamicResource Primary}" Background="{DynamicResource Surface}">
                 <Image Source="Assets/Images/Search_img.png" Stretch="Uniform" Margin="3"/>

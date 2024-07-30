@@ -65,6 +65,9 @@ namespace CryptoDataWpf
             System.Windows.Application.Current.Resources.MergedDictionaries.Add(resdict);
         }
 
-        
+        private void NavMenuItemClick(object sender, MouseButtonEventArgs e)
+        {
+
+        }
     }
 }

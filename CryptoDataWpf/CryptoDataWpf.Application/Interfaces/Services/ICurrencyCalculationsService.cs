@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CryptoDataWpf.Core.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,6 @@ namespace CryptoDataWpf.Application.Interfaces.Services
 {
     public interface ICurrencyCalculationsService
     {
-        Task<decimal> ExchangeCurrencies(string firstCurrencyName, string secondCurrencyName);
+        decimal ExchangeCurrencies(Currency firstCurrency, Currency secondCurrency);
     }
 }

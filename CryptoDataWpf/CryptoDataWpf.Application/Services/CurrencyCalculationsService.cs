@@ -1,4 +1,5 @@
 ﻿using CryptoDataWpf.Application.Interfaces.Services;
+using CryptoDataWpf.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,18 +10,9 @@ namespace CryptoDataWpf.Application.Services
 {
     public class CurrencyCalculationsService : ICurrencyCalculationsService
     {
-        private readonly IAPIInteractionService _interactionService;
 
-        public CurrencyCalculationsService(IAPIInteractionService interactionService)
+        public decimal ExchangeCurrencies(Currency firstCurrency, Currency secondCurrency)
         {
-            _interactionService = interactionService;
-        }
-
-        public async Task<decimal> ExchangeCurrencies(string firstCurrencyName, string secondCurrencyName)
-        {
-            var firstCurrency = await _interactionService.GetAsset(firstCurrencyName);
-            var secondCurrency = await _interactionService.GetAsset(secondCurrencyName);
-
             return firstCurrency.PriceUsd / secondCurrency.PriceUsd;
         }
     }

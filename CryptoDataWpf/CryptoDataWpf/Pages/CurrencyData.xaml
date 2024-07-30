@@ -10,21 +10,79 @@
 
     <Page.Resources>
         <Style x:Key="RowStyle" TargetType="TextBlock">
-            <Setter Property="Margin" Value="10,20"/>
-            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Foreground" Value="{DynamicResource Surface}"/>
+            <Setter Property="Margin" Value="20 0 0 0"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="FontStyle" Value="Italic"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+        </Style>
+        <Style x:Key="RowHeaderStyle" BasedOn="{StaticResource RowStyle}" TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Left"/>
         </Style>
     </Page.Resources>
     <Grid Background="{StaticResource Background}">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition ></ColumnDefinition>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition ></RowDefinition>
-        </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Text="Currency data" Margin="20,10" Foreground="{DynamicResource Surface}" FontWeight="DemiBold"  FontSize="25"/>
-        <StackPanel Grid.Row="1" >
-            <TextBlock Style="{StaticResource RowStyle}" Text="{Binding Currency.Symbol }" Foreground="{DynamicResource Surface}" FontWeight="Bold" FontSize="60" />
-        </StackPanel>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition ></RowDefinition>
+                </Grid.RowDefinitions>
+
+
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="Currency data" Margin="20,10" Foreground="{DynamicResource Surface}" FontWeight="DemiBold"  FontSize="25"/>
+                <StackPanel Grid.Row="1" Grid.Column="0">
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Style="{StaticResource RowStyle}" Text="{Binding Currency.Symbol }" FontWeight="Bold" FontSize="80" Grid.Column="0" />
+                        <TextBlock Style="{StaticResource RowStyle}" Text="{Binding Currency.Rank, StringFormat=Top {0} currency }" FontWeight="Bold" FontSize="40" Grid.Column="1" />
+                    </Grid>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Style="{StaticResource RowHeaderStyle}" Text="{Binding Currency.Name }" FontSize="40"/>
+                        <TextBlock Grid.Column="1" VerticalAlignment="Center" FontStyle="Italic" >
+                    <Hyperlink NavigateUri="{Binding Currency.Explorer}"  RequestNavigate="Hyperlink_RequestNavigate" TextDecorations="None">
+                        <TextBlock Style="{StaticResource RowStyle}" Text="Explorer link" TextDecorations="Underline"/>
+                    </Hyperlink>
+                </TextBlock>
+                    </Grid>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0">
+                            <TextBlock Style="{StaticResource RowHeaderStyle}" Text="Supply"/>
+                            <TextBlock Style="{StaticResource RowHeaderStyle}" Text="Max Supply"/>
+                            <TextBlock Style="{StaticResource RowHeaderStyle}" Text="Market Capitalization"/>
+                            <TextBlock Style="{StaticResource RowHeaderStyle}" Text="Volume 24 Hr"/>
+                            <TextBlock Style="{StaticResource RowHeaderStyle}" Text="Price"/>
+                            <TextBlock Style="{StaticResource RowHeaderStyle}" Text="Change 24Hr"/>
+                            <TextBlock Style="{StaticResource RowHeaderStyle}" Text="VWAP 24Hr"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1">
+                            <TextBlock Style="{StaticResource RowStyle}" HorizontalAlignment="Right" Text="{Binding Currency.Supply , StringFormat={}{0:F0}}"/>
+                            <TextBlock Style="{StaticResource RowStyle}" HorizontalAlignment="Right" Text="{Binding Currency.MaxSupply , StringFormat={}{0:F0} }"/>
+                            <TextBlock Style="{StaticResource RowStyle}" HorizontalAlignment="Right" Text="{Binding Currency.MarketCapUsd, StringFormat={}{0:C} }"/>
+                            <TextBlock Style="{StaticResource RowStyle}" HorizontalAlignment="Right" Text="{Binding Currency.VolumeUsd24Hr, StringFormat={}{0:C} }"/>
+                            <TextBlock Style="{StaticResource RowStyle}" HorizontalAlignment="Right" Text="{Binding Currency.PriceUsd, StringFormat={}{0:C} }"/>
+                            <TextBlock Style="{StaticResource RowStyle}" HorizontalAlignment="Right" Text="{Binding Currency.ChangePercent24Hr, StringFormat={}{0:F}% }"/>
+                            <TextBlock Style="{StaticResource RowStyle}" HorizontalAlignment="Right" Text="{Binding Currency.Vwap24Hr, StringFormat={}{0:F0} }"/>
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
+            </Grid>
+        </ScrollViewer>
     </Grid>
 </Page>

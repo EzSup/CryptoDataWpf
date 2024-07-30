@@ -8,6 +8,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Navigation;
 
@@ -44,11 +45,34 @@ namespace CryptoDataWpf.ViewModels
             _apiService = apiService;
 
             SearchCurrencyCommand = new RelayCommand(SearchCurrency, CanSearchCurrency);
+            SwitchPagesCommand = new RelayCommand(SwitchPage, CanSwitchPages);   
         }
 
         private bool CanSearchCurrency(object obj)
         {
             return true;
+        }
+
+        private bool CanSwitchPages(object obj)
+        {
+            return true;
+        }
+
+        private void SwitchPage(object obj)
+        {
+            var pageName = obj as string;
+            switch (pageName)
+            {
+                case "Main":
+                    TopList topListPage = new TopList(new(_apiService));
+                    CurrentView = topListPage;
+                    return;
+                //case "Exchange":
+                //    return;
+                default:
+                    SearchCurrency(pageName);                    
+                    return;
+            }            
         }
 
         private async void SearchCurrency(object obj)
@@ -59,6 +83,8 @@ namespace CryptoDataWpf.ViewModels
         }
 
         public ICommand SearchCurrencyCommand { get; set; }
+
+        public ICommand SwitchPagesCommand { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 

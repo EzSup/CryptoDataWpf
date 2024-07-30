@@ -27,7 +27,14 @@ namespace CryptoDataWpf.Pages
             InitializeComponent();
         }
 
-
-        
+        private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)
+        {
+            var sInfo = new System.Diagnostics.ProcessStartInfo(e.Uri.AbsoluteUri)
+            {
+                UseShellExecute = true,
+            };
+            System.Diagnostics.Process.Start(sInfo);
+            e.Handled = true;
+        }
     }
 }
