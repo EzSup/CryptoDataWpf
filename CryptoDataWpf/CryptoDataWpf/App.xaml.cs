@@ -19,12 +19,17 @@ namespace CryptoDataWpf
 
         private void ConfigureServices(IServiceCollection services)
         {
-            services.AddScoped<IAPIInteractionService, CoinCapService>();
+            services.AddScoped<ICurrencyDataService, CoinCapService>();
             services.AddScoped<ICurrencyCalculationsService, CurrencyCalculationsService>();
+            services.AddScoped<IOhlcService, KuCoinService>();
 
             services.AddHttpClient("CoinCap", client =>
             {
                 client.BaseAddress = new Uri("https://api.coincap.io/");
+            });
+            services.AddHttpClient("KuCoin", client =>
+            {
+                client.BaseAddress = new Uri("https://api.kucoin.com/");
             });
 
             services.AddSingleton<CurrencyViewModel>();

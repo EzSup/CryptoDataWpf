@@ -11,9 +11,9 @@ namespace CryptoDataWpf.ViewModels
     public class TopListViewModel
     {
         public ObservableCollection<CurrencyViewModel> Currencies { get; set; }
-        private readonly IAPIInteractionService _apiService;
+        private readonly ICurrencyDataService _apiService;
 
-        public TopListViewModel(IAPIInteractionService apiService)
+        public TopListViewModel(ICurrencyDataService apiService)
         {
             Currencies = new ObservableCollection<CurrencyViewModel>();
             _apiService = apiService;

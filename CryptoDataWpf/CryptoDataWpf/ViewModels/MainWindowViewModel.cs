@@ -18,8 +18,9 @@ namespace CryptoDataWpf.ViewModels
     public class MainWindowViewModel : INotifyPropertyChanged
     {
         private readonly Regex _currencyCodeRegex = new(@"^[a-zA-Z\s]+$");
-        private readonly IAPIInteractionService _apiService;
+        private readonly ICurrencyDataService _apiService;
         private readonly ICurrencyCalculationsService _calculationsService;
+        private readonly IOhlcService _ohlcService;
         private string _currencyCode = "";
         private object _currentView;
 
@@ -43,10 +44,11 @@ namespace CryptoDataWpf.ViewModels
             }
         }
 
-        public MainWindowViewModel(IAPIInteractionService apiService, ICurrencyCalculationsService calculationsService)
+        public MainWindowViewModel(ICurrencyDataService apiService, ICurrencyCalculationsService calculationsService, IOhlcService ohlcService)
         {
             _apiService = apiService;
             _calculationsService = calculationsService;
+            _ohlcService = ohlcService;
 
             SearchCurrencyCommand = new RelayCommand(SearchCurrency, CanSearchCurrency);
             SwitchPagesCommand = new RelayCommand(SwitchPage, CanSwitchPages);   
@@ -84,7 +86,7 @@ namespace CryptoDataWpf.ViewModels
 
         private async void SearchCurrency(object obj)
         {
-            var currencyDataViewModel = new CurrencyDataViewModel(_apiService, CurrencyCode);
+            var currencyDataViewModel = new CurrencyDataViewModel(_apiService, _ohlcService, CurrencyCode);
             var currencyDetailView = new CurrencyData() { DataContext = currencyDataViewModel};
             CurrentView = currencyDetailView;
         }

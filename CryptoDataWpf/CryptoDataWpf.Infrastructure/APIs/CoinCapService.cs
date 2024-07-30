@@ -12,7 +12,7 @@ using CryptoDataWpf.Core.CustomExceptions;
 
 namespace CryptoDataWpf.Infrastructure.APIs
 {
-    public class CoinCapService : IAPIInteractionService
+    public class CoinCapService : ICurrencyDataService
     {
         private readonly HttpClient _httpClient;
 

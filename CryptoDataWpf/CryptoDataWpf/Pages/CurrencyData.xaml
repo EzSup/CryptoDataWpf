@@ -4,13 +4,14 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:CryptoDataWpf.Pages"
+      xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="CurrencyData">
 
     <Page.Resources>
         <Style x:Key="RowStyle" TargetType="TextBlock">
-            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontSize" Value="16"/>
             <Setter Property="Foreground" Value="{DynamicResource Surface}"/>
             <Setter Property="Margin" Value="20 0 0 0"/>
             <Setter Property="HorizontalAlignment" Value="Right"/>
@@ -32,18 +33,15 @@
                     <RowDefinition Height="Auto"></RowDefinition>
                     <RowDefinition ></RowDefinition>
                 </Grid.RowDefinitions>
-
-
                 <TextBlock Grid.Row="0" Grid.Column="0" Text="Currency data" Margin="20,10" Foreground="{DynamicResource Surface}" FontWeight="DemiBold"  FontSize="25"/>
                 <StackPanel Grid.Row="1" Grid.Column="0">
-
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
                         <TextBlock Style="{StaticResource RowStyle}" Text="{Binding Currency.Symbol }" FontWeight="Bold" FontSize="80" Grid.Column="0" />
-                        <TextBlock Style="{StaticResource RowStyle}" Text="{Binding Currency.Rank, StringFormat=Top {0} currency }" FontWeight="Bold" FontSize="40" Grid.Column="1" />
+                        <TextBlock Style="{StaticResource RowStyle}" Text="{Binding Currency.Rank, StringFormat=Top {0} currency }" FontWeight="Bold" FontSize="20" Grid.Column="1" />
                     </Grid>
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -52,10 +50,10 @@
                         </Grid.ColumnDefinitions>
                         <TextBlock Grid.Column="0" Style="{StaticResource RowHeaderStyle}" Text="{Binding Currency.Name }" FontSize="40"/>
                         <TextBlock Grid.Column="1" VerticalAlignment="Center" FontStyle="Italic" >
-                    <Hyperlink NavigateUri="{Binding Currency.Explorer}"  RequestNavigate="Hyperlink_RequestNavigate" TextDecorations="None">
-                        <TextBlock Style="{StaticResource RowStyle}" Text="Explorer link" TextDecorations="Underline"/>
-                    </Hyperlink>
-                </TextBlock>
+                            <Hyperlink NavigateUri="{Binding Currency.Explorer}"  RequestNavigate="Hyperlink_RequestNavigate" TextDecorations="None">
+                                <TextBlock Style="{StaticResource RowStyle}" Text="Explorer link" TextDecorations="Underline"/>
+                            </Hyperlink>
+                        </TextBlock>
                     </Grid>
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -82,6 +80,12 @@
                         </StackPanel>
                     </Grid>
                 </StackPanel>
+                <Grid Grid.Row="1" Grid.Column="1">
+                    <Grid Background="White" Margin="30">
+                        <lvc:CartesianChart Series="{Binding Series}" XAxes="{Binding XAxes}"></lvc:CartesianChart>
+                    </Grid>
+                    
+                </Grid>                
             </Grid>
         </ScrollViewer>
     </Grid>

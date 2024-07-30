@@ -14,7 +14,7 @@ namespace CryptoDataWpf.ViewModels
 {
     public class ExchangesViewModel : INotifyPropertyChanged
     {
-        private readonly IAPIInteractionService _apiService;
+        private readonly ICurrencyDataService _apiService;
         private readonly ICurrencyCalculationsService _currencyCalculationsService;
 
         private Currency _targetCurrency = new Currency { Symbol = "NO", PriceUsd=0};
@@ -84,7 +84,7 @@ namespace CryptoDataWpf.ViewModels
             }
         }
 
-        public ExchangesViewModel(IAPIInteractionService apiService, ICurrencyCalculationsService currencyCalculationsService)
+        public ExchangesViewModel(ICurrencyDataService apiService, ICurrencyCalculationsService currencyCalculationsService)
         {
             _apiService = apiService;
             _currencyCalculationsService = currencyCalculationsService;

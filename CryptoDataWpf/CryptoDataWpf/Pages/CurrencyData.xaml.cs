@@ -13,6 +13,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using CommunityToolkit.Mvvm.ComponentModel;
+using LiveChartsCore;
+using LiveChartsCore.Defaults;
+using LiveChartsCore.SkiaSharpView;
 
 namespace CryptoDataWpf.Pages
 {
@@ -21,7 +25,6 @@ namespace CryptoDataWpf.Pages
     /// </summary>
     public partial class CurrencyData : Page
     {
-
         public CurrencyData()
         {
             InitializeComponent();

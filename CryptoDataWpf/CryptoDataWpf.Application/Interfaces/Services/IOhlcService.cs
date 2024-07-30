@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace CryptoDataWpf.Application.Interfaces.Services
 {
-    public interface IAPIInteractionService
+    public interface IOhlcService
     {
-        Task<ICollection<Currency>> GetAssets(string? search = null, int countLimit = 10);
-        Task<Currency> GetAsset(string search);
+        Task<ICollection<FinancialData>> GetFinancialDatas(string symbol, string timePeriod);
     }
 }
