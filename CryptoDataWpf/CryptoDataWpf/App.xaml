@@ -24,7 +24,7 @@
                                     </Grid>
                                 </ControlTemplate>
                             </Setter.Value>
-                        </Setter>
+                        </Setter>                        
                     </Style>
                     <Style x:Key="SearchInput" TargetType="TextBox">
                         <Setter Property="FontSize" Value="20"/>

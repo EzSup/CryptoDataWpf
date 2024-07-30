@@ -38,6 +38,7 @@ namespace CryptoDataWpf
 
         protected override void OnStartup(StartupEventArgs e)
         {
+            this.Dispatcher.UnhandledException += OnDispatcherUnhandledException;
             IServiceCollection services = new ServiceCollection();
 
             ConfigureServices(services);
@@ -47,6 +48,13 @@ namespace CryptoDataWpf
             mainWindow.Show();
             base.OnStartup(e);
 
+        }        
+
+        private void OnDispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
+        {
+            string errorMessage = string.Format("An unhandled exception occured: {0}", e.Exception.Message);
+            MessageBox.Show(errorMessage, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            e.Handled = true;
         }
 
     }

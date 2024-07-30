@@ -40,7 +40,7 @@
             <Image Source="../assets/images/swap_img.png"  Stretch="Uniform" Margin="3"/>
         </Button>
 
-        <Button Command="{Binding ExchangeCommand}" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center"  Foreground="{DynamicResource Surface}" Background="Transparent" BorderThickness="0">
+        <Button Command="{Binding ExchangeCommand}" Grid.Column="1" Grid.Row="2"  HorizontalAlignment="Center" VerticalAlignment="Center"  Foreground="{DynamicResource Surface}" Background="Transparent" BorderThickness="0">
             <TextBlock VerticalAlignment="Center" Margin="0 0 0 20" FontSize="100">
                    =
             </TextBlock>

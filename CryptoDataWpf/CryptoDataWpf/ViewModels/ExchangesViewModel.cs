@@ -21,7 +21,7 @@ namespace CryptoDataWpf.ViewModels
         private Currency _toBeExchangedCurrency = new Currency { Symbol = "NO", PriceUsd = 0 };
         private string _toBeExchangedCurrencyCode;
         private string _targetCurrencyCode;
-        private decimal _toBeExchangedCurrencyAmount = 0;
+        private decimal _toBeExchangedCurrencyAmount = 1;
         private decimal _targetCurrencyAmount = 0;
 
         public decimal TargetCurrencyAmount
@@ -100,12 +100,17 @@ namespace CryptoDataWpf.ViewModels
 
         private bool CanExchange(object obj)
         {
-            return true;
+            return ToBeExchangedCurrency.PriceUsd > 0 
+                && TargetCurrency.PriceUsd > 0  
+                && ToBeExchangedCurrencyAmount > 0
+                && TargetCurrency.Symbol != ToBeExchangedCurrency.Symbol;
         }
 
         private bool CanSwapCurrencies(object obj)
         {
-            return true;
+            return ToBeExchangedCurrency.Symbol != "NO" 
+                && TargetCurrency.Symbol != "NO"
+                && TargetCurrency.Symbol != ToBeExchangedCurrency.Symbol;
         }
 
         private async void SetCurrency(object obj)
@@ -143,6 +148,8 @@ namespace CryptoDataWpf.ViewModels
         protected virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            ((RelayCommand)ExchangeCommand).RaiseCanExecuteChanged();
+            ((RelayCommand)SwapCurrenciesCommand).RaiseCanExecuteChanged();
         }
     }
 }

@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
 using CryptoDataWpf.Core.Models;
+using CryptoDataWpf.Core.CustomExceptions;
+using System.Windows;
 
 namespace CryptoDataWpf.ViewModels
 {
@@ -36,7 +38,15 @@ namespace CryptoDataWpf.ViewModels
 
         private async Task LoadCurrencyData(string currencyCode)
         {
-            Currency = await _apiService.GetAsset(currencyCode);
+            try
+            {
+                Currency = await _apiService.GetAsset(currencyCode);
+            }
+            catch (CurrencyNotFoundException ex)
+            {
+                string errorMessage = string.Format("Currency searching exception: {0}", ex.Message);
+                MessageBox.Show(errorMessage, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

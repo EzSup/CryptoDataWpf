@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -16,9 +17,10 @@ namespace CryptoDataWpf.ViewModels
 {
     public class MainWindowViewModel : INotifyPropertyChanged
     {
+        private readonly Regex _currencyCodeRegex = new(@"^[a-zA-Z\s]+$");
         private readonly IAPIInteractionService _apiService;
         private readonly ICurrencyCalculationsService _calculationsService;
-        private string _currencyCode;
+        private string _currencyCode = "";
         private object _currentView;
 
         public object CurrentView
@@ -95,6 +97,7 @@ namespace CryptoDataWpf.ViewModels
 
         protected virtual void OnPropertyChanged(string propertyName)
         {
+            ((RelayCommand)SearchCurrencyCommand).RaiseCanExecuteChanged();
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }

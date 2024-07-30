@@ -14,6 +14,7 @@ namespace CryptoDataWpf.Commands
         private Action<object> _Execute {get;set;}
         private Predicate<object> _CanExecute { get; set; }
 
+
         public RelayCommand(Action<object> ExecuteMethod, Predicate<object> CanExecuteMethod)
         {
             _Execute = ExecuteMethod;
@@ -28,6 +29,11 @@ namespace CryptoDataWpf.Commands
         public void Execute(object? parameter)
         {
             _Execute(parameter);
+        }
+
+        public void RaiseCanExecuteChanged()
+        {
+            CanExecuteChanged?.Invoke(this, EventArgs.Empty);
         }
     }
 }
