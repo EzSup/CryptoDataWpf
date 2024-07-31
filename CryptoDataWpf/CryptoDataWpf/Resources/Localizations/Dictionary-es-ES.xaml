@@ -1,0 +1,20 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:System="clr-namespace:System;assembly=mscorlib">
+    <System:String x:Key="MenuTitle">MENÚ</System:String>
+    <System:String x:Key="TopCurrenciesHeader">Principales monedas</System:String>
+    <System:String x:Key="MenuOptionHome">Inicio</System:String>
+    <System:String x:Key="MenuOptionExchanges">Intercambios</System:String>
+    <System:String x:Key="MenuOptionTheme">Tema</System:String>
+    <System:String x:Key="MenuOptionLocalization">Localización</System:String>
+
+    <System:String x:Key="CurrencyDataHeaderSupply">Suministro</System:String>
+    <System:String x:Key="CurrencyDataHeaderMaxSupply">Suministro máximo</System:String>
+    <System:String x:Key="CurrencyDataHeaderMarketCapitalization">Capitalización de mercado</System:String>
+    <System:String x:Key="CurrencyDataHeaderVolume24Hr">Volumen 24 Hr</System:String>
+    <System:String x:Key="CurrencyDataHeaderPrice">Precio</System:String>
+    <System:String x:Key="CurrencyDataHeaderChange24Hr">Cambio 24 Hr</System:String>
+    <System:String x:Key="CurrencyDataHeaderVWAP24Hr">VWAP 24 Hr</System:String>
+
+    <System:String x:Key="CurrencyCardLinkHeader">Enlace del mercado</System:String>
+</ResourceDictionary>
