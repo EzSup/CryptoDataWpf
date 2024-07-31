@@ -22,7 +22,7 @@
             <Setter Property="HorizontalAlignment" Value="Left"/>
         </Style>
     </Page.Resources>
-    <Grid Background="{StaticResource Background}">
+    <Grid Background="{DynamicResource Background}">
         <ScrollViewer VerticalScrollBarVisibility="Auto">
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -50,7 +50,7 @@
                         <TextBlock Grid.Column="0" Style="{StaticResource RowHeaderStyle}" Text="{Binding Currency.Name }" FontSize="40"/>
                         <TextBlock Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right" FontStyle="Italic" >
                             <Hyperlink NavigateUri="{Binding Currency.Explorer}"  RequestNavigate="Hyperlink_RequestNavigate" TextDecorations="None">
-                                <TextBlock Style="{StaticResource RowStyle}" Foreground="{DynamicResource Header}" Text="Explorer link" TextDecorations="Underline"/>
+                                <TextBlock Style="{StaticResource RowStyle}" Foreground="{DynamicResource Header}" Text="{DynamicResource CurrencyCardLinkHeader}" TextDecorations="Underline"/>
                             </Hyperlink>
                         </TextBlock>
                     </Grid>
@@ -80,7 +80,7 @@
                     </Grid>
                 </StackPanel>
                 <Grid Grid.Row="1" Grid.Column="1">
-                    <Border Background="{DynamicResource Surface}" Margin="30" CornerRadius="40">
+                    <Border Background="{DynamicResource Surface}" Margin="30" CornerRadius="20">
                         <lvc:CartesianChart Series="{Binding Series}" XAxes="{Binding XAxes}" ></lvc:CartesianChart>
                     </Border>
                     

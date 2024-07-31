@@ -5,4 +5,7 @@
     <SolidColorBrush Color="#a80038" x:Key="Primary"/>
     <SolidColorBrush Color="#2b2024" x:Key="Secondary"/>
     <SolidColorBrush Color="#2b2024" x:Key="Header"/>
+
+    <SolidColorBrush Color="#48426d" x:Key="Shadow"/>
+    <SolidColorBrush Color="#f0c38e" x:Key="CardBackground"/>
 </ResourceDictionary>

@@ -15,9 +15,6 @@ using CryptoDataWpf.Application.Interfaces.Services;
 
 namespace CryptoDataWpf
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
 
@@ -38,21 +35,11 @@ namespace CryptoDataWpf
         {
             var tag = (sender as MenuItem).Tag.ToString();
             SetLang(tag);
-        }
-
-        private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)
-        {
-            var sInfo = new System.Diagnostics.ProcessStartInfo(e.Uri.AbsoluteUri)
-            {
-                UseShellExecute = true,
-            };
-            System.Diagnostics.Process.Start(sInfo);
-            e.Handled = true;
-        }
+        }        
 
         private void SetTheme(string themeName)
         {
-            AppTheme.ChangeTheme(new Uri($"Themes/{themeName}.xaml", uriKind: UriKind.Relative));
+            AppTheme.ChangeTheme(new Uri($"Resources/Themes/{themeName}.xaml", uriKind: UriKind.Relative));
         }
 
         private void SetLang(string lang)
@@ -63,11 +50,12 @@ namespace CryptoDataWpf
             System.Windows.Application.Current.Resources.Clear();
             ResourceDictionary resdict = new()
             {
-                Source = new Uri($"/Localizations/Dictionary-{lang}.xaml", UriKind.Relative)
+                Source = new Uri($"Resources/Localizations/Dictionary-{lang}.xaml", UriKind.Relative)
             };
             System.Windows.Application.Current.Resources.MergedDictionaries.Add(resdict);
         }
 
+        // themes and localization options showing
         private void ListViewItem_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             var listViewItem = sender as ListViewItem;
@@ -79,6 +67,17 @@ namespace CryptoDataWpf
                     contextMenu.IsOpen = true;
                 }
             }
+        }
+
+        // servicing code to redirect links in browser
+        private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)
+        {
+            var sInfo = new System.Diagnostics.ProcessStartInfo(e.Uri.AbsoluteUri)
+            {
+                UseShellExecute = true,
+            };
+            System.Diagnostics.Process.Start(sInfo);
+            e.Handled = true;
         }
 
     }

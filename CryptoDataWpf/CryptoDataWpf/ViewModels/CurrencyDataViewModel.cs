@@ -34,6 +34,7 @@ namespace CryptoDataWpf.ViewModels
                 OnPropertyChanged(nameof(XAxes));
             }         
         }
+
         public ISeries[] Series 
         { 
             get => _series; 
@@ -76,7 +77,7 @@ namespace CryptoDataWpf.ViewModels
             try
             {
                 Currency = await _apiService.GetAsset(currencyCode);
-                FinancialData = (await _ohlcService.GetFinancialDatas(currencyCode, "1hour"))?.ToArray() ?? Array.Empty<FinancialData>();
+                FinancialData = (await _ohlcService.GetFinancialDatas(Currency.Symbol, "1hour"))?.ToArray() ?? Array.Empty<FinancialData>();
 
                 Series = new ISeries[]
                 {

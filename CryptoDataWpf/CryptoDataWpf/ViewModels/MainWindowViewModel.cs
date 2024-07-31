@@ -17,7 +17,6 @@ namespace CryptoDataWpf.ViewModels
 {
     public class MainWindowViewModel : INotifyPropertyChanged
     {
-        private readonly Regex _currencyCodeRegex = new(@"^[a-zA-Z\s]+$");
         private readonly ICurrencyDataService _apiService;
         private readonly ICurrencyCalculationsService _calculationsService;
         private readonly IOhlcService _ohlcService;

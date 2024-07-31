@@ -8,13 +8,13 @@
     <System:String x:Key="MenuOptionTheme">Тема</System:String>
     <System:String x:Key="MenuOptionLocalization">Локалізація</System:String>
 
-    <System:String x:Key="CurrencyDataHeaderSupply">Запас</System:String>
-    <System:String x:Key="CurrencyDataHeaderMaxSupply">Максимальний запас</System:String>
+    <System:String x:Key="CurrencyDataHeaderSupply">Пропозиції</System:String>
+    <System:String x:Key="CurrencyDataHeaderMaxSupply">Максимальні пропозиції</System:String>
     <System:String x:Key="CurrencyDataHeaderMarketCapitalization">Капіталізація ринку</System:String>
     <System:String x:Key="CurrencyDataHeaderVolume24Hr">Обсяг 24 год</System:String>
     <System:String x:Key="CurrencyDataHeaderPrice">Ціна</System:String>
     <System:String x:Key="CurrencyDataHeaderChange24Hr">Зміна 24 год</System:String>
     <System:String x:Key="CurrencyDataHeaderVWAP24Hr">VWAP 24 год</System:String>
 
-    <System:String x:Key="CurrencyCardLinkHeader">На біржу</System:String>
+    <System:String x:Key="CurrencyCardLinkHeader">На ринок</System:String>
 </ResourceDictionary>

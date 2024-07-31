@@ -1,5 +1,6 @@
 ﻿using CryptoDataWpf.Application.Interfaces.Services;
 using CryptoDataWpf.Commands;
+using CryptoDataWpf.Core.CustomExceptions;
 using CryptoDataWpf.Core.Models;
 using CryptoDataWpf.Pages;
 using System;
@@ -8,6 +9,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace CryptoDataWpf.ViewModels
@@ -115,14 +117,22 @@ namespace CryptoDataWpf.ViewModels
 
         private async void SetCurrency(object obj)
         {
-            switch(obj as string)
+            try
             {
-                case "targetCurrency":
-                    TargetCurrency = await _apiService.GetAsset(TargetCurrencyCode);
-                    break;
-                case "toBeExchangedCurrency":
-                    ToBeExchangedCurrency = await _apiService.GetAsset(ToBeExchangedCurrencyCode);
-                    break;
+                switch (obj as string)
+                {
+                    case "targetCurrency":
+                        TargetCurrency = await _apiService.GetAsset(TargetCurrencyCode);
+                        break;
+                    case "toBeExchangedCurrency":
+                        ToBeExchangedCurrency = await _apiService.GetAsset(ToBeExchangedCurrencyCode);
+                        break;
+                }
+            }
+            catch(CurrencyNotFoundException ex) 
+            {
+                string errorMessage = string.Format("Currency searching exception: {0}", ex.Message);
+                MessageBox.Show(errorMessage, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             
         }

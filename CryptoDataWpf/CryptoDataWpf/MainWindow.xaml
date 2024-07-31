@@ -230,7 +230,9 @@
                             <ContextMenu>
                                 <MenuItem Tag="uk-UA" Header="Українська" Click="SetLanguageClick"/>
                                 <MenuItem Tag="en-US" Header="English" Click="SetLanguageClick" />
-                                <MenuItem Tag="ge-GE" Header="German" Click="SetLanguageClick" />
+                                <MenuItem Tag="ge-GE" Header="Deutsch" Click="SetLanguageClick" />
+                                <MenuItem Tag="ru-RU" Header="Russian" Click="SetLanguageClick" />
+                                <MenuItem Tag="es-ES" Header="Español" Click="SetLanguageClick" />
                             </ContextMenu>
                         </ListViewItem.ContextMenu>
                     </ListViewItem>
@@ -277,7 +279,12 @@
 
         </Grid>
 
-        <TextBlock Text="{Binding CurrentView.Title}"  Margin="20,0,0,0" Foreground="{DynamicResource Header}" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold"  FontSize="25" Grid.Row="0" Grid.Column="1"/>
+        <TextBlock Text="{Binding CurrentView.Title}"  Margin="20,0,0,0" Foreground="{DynamicResource Header}" 
+                   HorizontalAlignment="Left" 
+                   VerticalAlignment="Center" 
+                   FontWeight="DemiBold"  
+                   FontSize="25" 
+                   Grid.Row="0" Grid.Column="1"/>
         
         <StackPanel Orientation="Horizontal" FlowDirection="RightToLeft" Grid.Row="0" Grid.Column="1">
             <TextBox Text="{Binding CurrencyCode}" Style="{StaticResource SearchInput}" ></TextBox>

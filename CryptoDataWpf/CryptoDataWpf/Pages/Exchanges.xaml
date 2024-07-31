@@ -15,7 +15,7 @@
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <!--    хотів зробити так, щоб заблокована кнопка на темному фоні не так сильно виділялась (через трігери не вдалось)
-                    але так, мабуть, буде не зрозуміло і може здатись що додаток зламався. Поки залишив в коментах
+                    але так, мабуть, буде не зрозуміло і може здатись що додаток зламався. Поки залишу в коментах
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
@@ -27,6 +27,13 @@
                 </Setter.Value>
             </Setter>-->           
         </Style>
+        <Style TargetType="TextBlock" x:Key="BasicHeader">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="Margin" Value="20 10"/>
+            <Setter Property="Foreground" Value="{DynamicResource Header}"/>
+            <Setter Property="FontSize" Value="30"/>
+        </Style>
     </Page.Resources>
 
     <Grid Background="{DynamicResource Background}" HorizontalAlignment="Center">
@@ -34,7 +41,6 @@
             <ColumnDefinition />
             <ColumnDefinition Width="200"/>
             <ColumnDefinition />
-
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="80"/>
@@ -47,13 +53,13 @@
             <TextBox Text="{Binding ToBeExchangedCurrencyCode}" Style="{StaticResource SearchInput}" ></TextBox>
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="0">
-            <TextBlock Text="{Binding ToBeExchangedCurrency.Symbol}" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" FontSize="70" Foreground="{DynamicResource Header}" Margin="20 0" />
-            <TextBlock Text="{Binding ToBeExchangedCurrency.PriceUsd, StringFormat={}{0:C}}" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="30" Foreground="{DynamicResource Header}" Margin="20 10" />
+            <TextBlock Text="{Binding ToBeExchangedCurrency.Symbol}"  Style="{StaticResource BasicHeader}" FontWeight="Bold" FontSize="70"  />
+            <TextBlock Text="{Binding ToBeExchangedCurrency.PriceUsd, StringFormat={}{0:C}}" Style="{StaticResource BasicHeader}" />
         </StackPanel>
 
         <StackPanel  Grid.Row="2" Orientation="Horizontal">
             <TextBox Text="{Binding ToBeExchangedCurrencyAmount}" Style="{StaticResource SearchInput}" Width="140" Height="60" FontSize="40" Margin="20 0"></TextBox>
-            <TextBlock Text="{Binding ToBeExchangedCurrency.Symbol}"   FontSize="40" Foreground="{DynamicResource Header}" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="{Binding ToBeExchangedCurrency.Symbol}"  Style="{StaticResource BasicHeader}" FontSize="40"></TextBlock>
         </StackPanel>
 
         <Button Style="{StaticResource ExchangeButton}" Command="{Binding SwapCurrenciesCommand}" Grid.Column="1" Grid.Row="1" >
@@ -62,7 +68,6 @@
 
         <Button Style="{StaticResource ExchangeButton}" Command="{Binding ExchangeCommand}" Grid.Column="1" Grid.Row="2"  >
             <TextBlock VerticalAlignment="Center" Margin="0 0 0 20" FontSize="100" Text="="/>
-
         </Button>
 
         <StackPanel Grid.Column="2" Grid.Row="0" Orientation="Horizontal">
@@ -71,13 +76,13 @@
         </StackPanel>
 
         <StackPanel Grid.Row="1" Grid.Column="2">
-            <TextBlock Text="{Binding TargetCurrency.Symbol}" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" FontSize="70" Foreground="{DynamicResource Header}" Margin="20 0"/>
-            <TextBlock Text="{Binding TargetCurrency.PriceUsd, StringFormat={}{0:C}}"  HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="30" Foreground="{DynamicResource Header}" Margin="20 10" />
+            <TextBlock Text="{Binding TargetCurrency.Symbol}" FontWeight="Bold" FontSize="70"  Style="{StaticResource BasicHeader}"/>
+            <TextBlock Text="{Binding TargetCurrency.PriceUsd, StringFormat={}{0:C}}"   Style="{StaticResource BasicHeader}"/>
         </StackPanel>
 
         <StackPanel  Grid.Row="2" Grid.Column="2" Orientation="Horizontal">
-            <TextBlock Text="{Binding TargetCurrencyAmount, StringFormat={}{0:F2}}" VerticalAlignment="Center" FontSize="40" Foreground="{DynamicResource Header}" />
-            <TextBlock Text="{Binding TargetCurrency.Symbol}" FontSize="40" VerticalAlignment="Center" Margin="20 0" Foreground="{DynamicResource Header}"/>
+            <TextBlock Text="{Binding TargetCurrencyAmount, StringFormat={}{0:F2}}"  Style="{StaticResource BasicHeader}" FontSize="40" />
+            <TextBlock Text="{Binding TargetCurrency.Symbol}" Style="{StaticResource BasicHeader}" FontSize="40"/>
         </StackPanel>
     </Grid>
 </Page>

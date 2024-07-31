@@ -10,9 +10,6 @@ using CryptoDataWpf.Application.Services;
 
 namespace CryptoDataWpf
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
     public partial class App : System.Windows.Application
     {
         private ServiceProvider _serviceProvider;
@@ -23,10 +20,12 @@ namespace CryptoDataWpf
             services.AddScoped<ICurrencyCalculationsService, CurrencyCalculationsService>();
             services.AddScoped<IOhlcService, KuCoinService>();
 
+            // CoinCap API for everything except OHLC charts data 
             services.AddHttpClient("CoinCap", client =>
             {
                 client.BaseAddress = new Uri("https://api.coincap.io/");
             });
+            // KuCoin API for OHLC charts data 
             services.AddHttpClient("KuCoin", client =>
             {
                 client.BaseAddress = new Uri("https://api.kucoin.com/");
