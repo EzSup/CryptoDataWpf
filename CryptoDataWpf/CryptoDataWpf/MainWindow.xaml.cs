@@ -31,9 +31,7 @@ namespace CryptoDataWpf
         private void SwitchThemeClick(object sender, RoutedEventArgs e)
         {
             string themeName = (sender as MenuItem).Tag.ToString();
-
-            AppTheme.ChangeTheme(new Uri($"Themes/{themeName}.xaml", uriKind: UriKind.Relative));
-
+            SetTheme(themeName);
         }
 
         private void SetLanguageClick(object sender, RoutedEventArgs e)
@@ -52,12 +50,17 @@ namespace CryptoDataWpf
             e.Handled = true;
         }
 
+        private void SetTheme(string themeName)
+        {
+            AppTheme.ChangeTheme(new Uri($"Themes/{themeName}.xaml", uriKind: UriKind.Relative));
+        }
+
         private void SetLang(string lang)
         {
             Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo(lang);
             Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(lang);
 
-            System.Windows.Application.Current.Resources.MergedDictionaries.Clear();
+            System.Windows.Application.Current.Resources.Clear();
             ResourceDictionary resdict = new()
             {
                 Source = new Uri($"/Localizations/Dictionary-{lang}.xaml", UriKind.Relative)
@@ -65,9 +68,17 @@ namespace CryptoDataWpf
             System.Windows.Application.Current.Resources.MergedDictionaries.Add(resdict);
         }
 
-        private void NavMenuItemClick(object sender, MouseButtonEventArgs e)
+        private void ListViewItem_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-
+            var listViewItem = sender as ListViewItem;
+            if (listViewItem != null)
+            {
+                var contextMenu = listViewItem.ContextMenu;
+                if (contextMenu != null)
+                {
+                    contextMenu.IsOpen = true;
+                }
+            }
         }
     }
 }

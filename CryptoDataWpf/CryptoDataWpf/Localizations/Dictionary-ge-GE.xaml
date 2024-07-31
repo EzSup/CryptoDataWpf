@@ -2,9 +2,19 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:System="clr-namespace:System;assembly=mscorlib">
     <System:String x:Key="MenuTitle">MENÜ</System:String>
-    <System:String x:Key="TopCurrenciesHeader">Top Währungen</System:String>
+    <System:String x:Key="TopCurrenciesHeader">Top-Währungen</System:String>
     <System:String x:Key="MenuOptionHome">Startseite</System:String>
-    <System:String x:Key="MenuOptionExchanges">Wechsel</System:String>
+    <System:String x:Key="MenuOptionExchanges">Börsen</System:String>
+    <System:String x:Key="MenuOptionTheme">Thema</System:String>
+    <System:String x:Key="MenuOptionLocalization">Lokalisierung</System:String>
+
+    <System:String x:Key="CurrencyDataHeaderSupply">Angebot</System:String>
+    <System:String x:Key="CurrencyDataHeaderMaxSupply">Maximalangebot</System:String>
+    <System:String x:Key="CurrencyDataHeaderMarketCapitalization">Marktkapitalisierung</System:String>
+    <System:String x:Key="CurrencyDataHeaderVolume24Hr">Volumen 24 Std</System:String>
+    <System:String x:Key="CurrencyDataHeaderPrice">Preis</System:String>
+    <System:String x:Key="CurrencyDataHeaderChange24Hr">Änderung 24 Std</System:String>
+    <System:String x:Key="CurrencyDataHeaderVWAP24Hr">VWAP 24 Std</System:String>
 
     <System:String x:Key="CurrencyCardLinkHeader">Zur Börse</System:String>
 </ResourceDictionary>

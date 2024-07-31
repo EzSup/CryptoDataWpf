@@ -11,11 +11,13 @@
   <ItemGroup>
     <None Remove="assets\images\Exchange_img.png" />
     <None Remove="assets\images\home_img.png" />
+    <None Remove="assets\images\lang_img.png" />
     <None Remove="assets\images\menu_active_img.png" />
     <None Remove="assets\images\Menu_animation.gif" />
     <None Remove="Assets\Images\Menu_img.png" />
     <None Remove="assets\images\Search_img.png" />
     <None Remove="assets\images\swap_img.png" />
+    <None Remove="assets\images\theme_img.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -37,11 +39,13 @@
   <ItemGroup>
     <Resource Include="assets\images\Exchange_img.png" />
     <Resource Include="assets\images\home_img.png" />
+    <Resource Include="assets\images\lang_img.png" />
     <Resource Include="assets\images\menu_active_img.png" />
     <Resource Include="assets\images\Menu_animation.gif" />
     <Resource Include="Assets\Images\Menu_img.png" />
     <Resource Include="assets\images\Search_img.png" />
     <Resource Include="assets\images\swap_img.png" />
+    <Resource Include="assets\images\theme_img.png" />
   </ItemGroup>
 
 </Project>

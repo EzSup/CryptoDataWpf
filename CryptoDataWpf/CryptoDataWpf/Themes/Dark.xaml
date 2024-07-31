@@ -4,4 +4,5 @@
     <SolidColorBrush Color="#f0c38e" x:Key="Surface"/>
     <SolidColorBrush Color="#312c51" x:Key="Primary"/>
     <SolidColorBrush Color="#363b4e" x:Key="Secondary"/>
+    <SolidColorBrush Color="#f0c38e" x:Key="Header"/>
 </ResourceDictionary>

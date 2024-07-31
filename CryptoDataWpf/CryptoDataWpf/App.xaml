@@ -19,24 +19,39 @@
                         <Setter Property="Template">
                             <Setter.Value>
                                 <ControlTemplate TargetType="Button">
-                                    <Grid Background="{DynamicResource Surface}">
-                                    <Image Source="Assets/Images/Search_img.png" Stretch="Uniform" Margin="3"/>
-                                    </Grid>
+                                    <Border Background="{DynamicResource Surface}" CornerRadius="5">
+                                        <Image Source="Assets/Images/Search_img.png" Stretch="Uniform" Margin="3"/>
+                                    </Border>
                                 </ControlTemplate>
                             </Setter.Value>
-                        </Setter>                        
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Background" Value="Green"/>
+                                <Setter Property="Foreground" Value="DeepPink"/>
+                            </Trigger>
+                        </Style.Triggers>
                     </Style>
                     <Style x:Key="SearchInput" TargetType="TextBox">
                         <Setter Property="FontSize" Value="20"/>
-                        <Setter Property="MinWidth" Value="200"/>
-                        <Setter Property="Height" Value="40px"/>
-                        <Setter Property="Margin" Value="10px 5px 5px 5px"/>
+                        <Setter Property="Width" Value="200"/>
+                        <Setter Property="Height" Value="40"/>
+                        <Setter Property="Margin" Value="10 5 5 5"/>
                         <Setter Property="Background" Value="{DynamicResource Primary}"/>
                         <Setter Property="BorderThickness" Value="0"/>
                         <Setter Property="Foreground" Value="{DynamicResource Surface}"/>
                         <Setter Property="VerticalContentAlignment" Value="Center"/>
                         <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                        <Setter Property="TextAlignment" Value="Right"/>                        
+                        <Setter Property="TextAlignment" Value="Right"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="TextBox">
+                                    <Border Background="{DynamicResource Primary}" CornerRadius="5" BorderThickness="1" BorderBrush="{DynamicResource Surface}">
+                                        <ScrollViewer x:Name="PART_ContentHost"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
                     </Style>
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>

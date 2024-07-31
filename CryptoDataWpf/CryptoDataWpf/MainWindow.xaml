@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CryptoDataWpf"
         mc:Ignorable="d"
-        Title="MainWindow" Height="520" Width="880" MinWidth="410" MinHeight="320"
+        Title="MainWindow" Height="520" Width="880" MinWidth="450" MinHeight="360"
         Background="{DynamicResource Background}">
     <Window.Resources>
         <ImageBrush x:Key="ToggleButtonMouseOver" ImageSource="assets/images/menu_active_img.png" />
@@ -30,7 +30,7 @@
             <Setter Property="Width" Value="100"/>
             <Setter Property="Margin" Value="20,0,0,0"/>
             <Setter Property="Background" Value="{StaticResource Background}"/>
-            <Setter Property="Foreground" Value="{StaticResource Surface}"/>
+            <Setter Property="Foreground" Value="{StaticResource Header}"/>
             <Setter Property="VerticalOffset" Value="6"/>
             <Setter Property="HorizontalOffset" Value="15"/>
             <Setter Property="FontSize" Value="16"/>
@@ -73,19 +73,6 @@
             </Setter>
         </Style>
     </Window.Resources>
-    <Window.ContextMenu>
-        <ContextMenu>
-            <MenuItem Header="Theme">
-                <MenuItem Tag="Dark" Header="Dark" Click="SwitchThemeClick"/>
-                <MenuItem Tag="Light" Header="Light" Click="SwitchThemeClick" />
-            </MenuItem>
-            <MenuItem Header="Language">
-                <MenuItem Tag="uk-UA" Header="Українська" Click="SetLanguageClick"/>
-                <MenuItem Tag="en-US" Header="English" Click="SetLanguageClick" />
-                <MenuItem Tag="ge-GE" Header="German" Click="SetLanguageClick" />
-            </MenuItem>
-        </ContextMenu>
-    </Window.ContextMenu>
     <Grid Background="{DynamicResource Background}">
         <Grid.RowDefinitions>
             <RowDefinition Height="50"></RowDefinition>
@@ -123,7 +110,7 @@
                                             Storyboard.TargetName="NavPanel"
                                             Storyboard.TargetProperty="Width"
                                             BeginTime="0:0:0"
-                                            From="180" To="65"
+                                            From="200" To="65"
                                             Duration="0:0:0.2">
 
                                         </DoubleAnimation>
@@ -137,7 +124,7 @@
                                             Storyboard.TargetName="NavPanel"
                                             Storyboard.TargetProperty="Width"
                                             BeginTime="0:0:0"
-                                            From="65" To="180"
+                                            From="65" To="200"
                                             Duration="0:0:0.3"></DoubleAnimation>
                                     </Storyboard>
                                 </BeginStoryboard>
@@ -151,7 +138,7 @@
                           BorderBrush="Transparent"
                           ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                     <ListViewItem HorizontalAlignment="Left"
-                                  Margin="0,0,0,10" MouseLeftButtonUp="NavMenuItemClick" >
+                                  Margin="0,0,0,10" >
                         <ListViewItem.InputBindings>
                             <MouseBinding Gesture="LeftClick"
                                   Command="{Binding SwitchPagesCommand}"
@@ -171,7 +158,7 @@
                         </StackPanel>
                         <ListViewItem.ToolTip>
                             <ToolTip x:Name="ToolTipHome" 
-                                     Content="Exchanges"
+                                     Content="{DynamicResource MenuOptionHome}"
                                      Style="{StaticResource ToolTipStyle}"/>
                         </ListViewItem.ToolTip>
                     </ListViewItem>
@@ -192,11 +179,59 @@
                                         Margin="25,0,0,0"
                                         Style="{StaticResource FontStyle}"/>
                         </StackPanel>
-                        <ListViewItem.ToolTip>
+                        <ListViewItem.ToolTip >
                             <ToolTip x:Name="ToolTipExchanges" 
-                                        Content="Exchanges"
+                                        Content="{DynamicResource MenuOptionExchanges}"
                                         Style="{StaticResource ToolTipStyle}"/>
                         </ListViewItem.ToolTip>
+                    </ListViewItem>
+                    <ListViewItem HorizontalAlignment="Left" Margin="0,0,0,10"  MouseLeftButtonUp="ListViewItem_MouseLeftButtonUp">
+                        <StackPanel Orientation="Horizontal" Width="180">
+                            <Image Source="assets/images/theme_img.png" 
+                                        Height="40"
+                                        Margin="5,0,0,0"
+                                        VerticalAlignment="Center"/>
+                            <TextBlock Text="{DynamicResource MenuOptionTheme}"
+                                        Margin="25,0,0,0"
+                                        Style="{StaticResource FontStyle}"
+                                        >
+                            </TextBlock>
+                        </StackPanel>
+                        <ListViewItem.ToolTip>
+                            <ToolTip x:Name="ToolTipTheme" 
+                                    Content="{DynamicResource MenuOptionTheme}"
+                                    Style="{StaticResource ToolTipStyle}"/>
+                        </ListViewItem.ToolTip>                        
+                        <ListViewItem.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Tag="Dark" Header="Dark" Click="SwitchThemeClick"/>
+                                <MenuItem Tag="Light" Header="Light" Click="SwitchThemeClick" />
+                            </ContextMenu>
+                        </ListViewItem.ContextMenu>
+                    </ListViewItem>
+                    <ListViewItem HorizontalAlignment="Left" Margin="0,0,0,10"  MouseLeftButtonUp="ListViewItem_MouseLeftButtonUp" >
+                        <StackPanel Orientation="Horizontal" Width="180">
+                            <Image Source="assets/images/lang_img.png" 
+                                    Height="40"
+                                    Margin="5,0,0,0"
+                                    VerticalAlignment="Center"/>
+                            <TextBlock Text="{DynamicResource MenuOptionLocalization}"
+                                        Margin="25,0,0,0"
+                                        Style="{StaticResource FontStyle}">
+                            </TextBlock>
+                        </StackPanel>
+                        <ListViewItem.ToolTip>
+                            <ToolTip x:Name="ToolTipLang" 
+                                    Content="{DynamicResource MenuOptionLocalization}"
+                                    Style="{StaticResource ToolTipStyle}"/>
+                        </ListViewItem.ToolTip>
+                        <ListViewItem.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Tag="uk-UA" Header="Українська" Click="SetLanguageClick"/>
+                                <MenuItem Tag="en-US" Header="English" Click="SetLanguageClick" />
+                                <MenuItem Tag="ge-GE" Header="German" Click="SetLanguageClick" />
+                            </ContextMenu>
+                        </ListViewItem.ContextMenu>
                     </ListViewItem>
 
                     <ListView.ItemContainerStyle>
@@ -238,13 +273,14 @@
                 </ListView>
 
             </StackPanel>
+
         </Grid>
 
-            <StackPanel Orientation="Horizontal" FlowDirection="RightToLeft" Grid.Row="0" Grid.Column="1">
-                <TextBox Text="{Binding CurrencyCode}" Style="{StaticResource SearchInput}"></TextBox>
-                <Button Command="{Binding SearchCurrencyCommand}" Style="{StaticResource SearchButton}" />
-                <TextBlock Text="{Binding CurrentView.Title}"  Margin="20,0,0,0" Foreground="{DynamicResource Surface}" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="DemiBold"  FontSize="25"/>
-            </StackPanel>
+        <StackPanel Orientation="Horizontal" FlowDirection="RightToLeft" Grid.Row="0" Grid.Column="1">
+            <TextBox Text="{Binding CurrencyCode}" Style="{StaticResource SearchInput}"></TextBox>
+            <Button Command="{Binding SearchCurrencyCommand}" Style="{StaticResource SearchButton}" />
+            <TextBlock Text="{Binding CurrentView.Title}"  Margin="20,0,0,0" Foreground="{DynamicResource Header}" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="DemiBold"  FontSize="25"/>
+        </StackPanel>
         <Grid Height="5" Background="{DynamicResource Surface}"  Grid.Column="1" Grid.Row="1"/>
 
 

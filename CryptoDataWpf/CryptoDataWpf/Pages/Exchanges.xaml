@@ -7,8 +7,29 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Exchanges">
+    <Page.Resources>
+        <Style x:Key="ExchangeButton" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Foreground" Value="{DynamicResource Header}"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <!--    хотів зробити так, щоб заблокована кнопка на темному фоні не так сильно виділялась (через трігери не вдалось)
+                    але так, мабуть, буде не зрозуміло і може здатись що додаток зламався. Поки залишив в коментах
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid Background="Transparent">
+                            <ContentPresenter HorizontalAlignment="Center" 
+                                          VerticalAlignment="Center"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>-->           
+        </Style>
+    </Page.Resources>
 
-    <Grid Background="{DynamicResource Background}">
+    <Grid Background="{DynamicResource Background}" HorizontalAlignment="Center">
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
             <ColumnDefinition Width="200"/>
@@ -26,24 +47,22 @@
             <TextBox Text="{Binding ToBeExchangedCurrencyCode}" Style="{StaticResource SearchInput}" ></TextBox>
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="0">
-            <TextBlock Text="{Binding ToBeExchangedCurrency.Symbol}" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" FontSize="70" Foreground="{DynamicResource Surface}" Margin="20 0" />
-            <TextBlock Text="{Binding ToBeExchangedCurrency.PriceUsd, StringFormat={}{0:C}}" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="30" Foreground="{DynamicResource Surface}" Margin="20 10" />
+            <TextBlock Text="{Binding ToBeExchangedCurrency.Symbol}" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" FontSize="70" Foreground="{DynamicResource Header}" Margin="20 0" />
+            <TextBlock Text="{Binding ToBeExchangedCurrency.PriceUsd, StringFormat={}{0:C}}" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="30" Foreground="{DynamicResource Header}" Margin="20 10" />
         </StackPanel>
 
         <StackPanel  Grid.Row="2" Orientation="Horizontal">
-            <TextBox Text="{Binding ToBeExchangedCurrencyAmount}" Style="{StaticResource SearchInput}" Height="60" FontSize="40" Margin="20 0"></TextBox>
-            <TextBlock Text="{Binding ToBeExchangedCurrency.Symbol}"   FontSize="40" Foreground="{DynamicResource Surface}" VerticalAlignment="Center"></TextBlock>
+            <TextBox Text="{Binding ToBeExchangedCurrencyAmount}" Style="{StaticResource SearchInput}" Width="140" Height="60" FontSize="40" Margin="20 0"></TextBox>
+            <TextBlock Text="{Binding ToBeExchangedCurrency.Symbol}"   FontSize="40" Foreground="{DynamicResource Header}" VerticalAlignment="Center"></TextBlock>
         </StackPanel>
-        
 
-        <Button Command="{Binding SwapCurrenciesCommand}" Grid.Column="1" Grid.Row="1" Background="Transparent" BorderThickness="0">
+        <Button Style="{StaticResource ExchangeButton}" Command="{Binding SwapCurrenciesCommand}" Grid.Column="1" Grid.Row="1" >
             <Image Source="../assets/images/swap_img.png"  Stretch="Uniform" Margin="3"/>
         </Button>
 
-        <Button Command="{Binding ExchangeCommand}" Grid.Column="1" Grid.Row="2"  HorizontalAlignment="Center" VerticalAlignment="Center"  Foreground="{DynamicResource Surface}" Background="Transparent" BorderThickness="0">
-            <TextBlock VerticalAlignment="Center" Margin="0 0 0 20" FontSize="100">
-                   =
-            </TextBlock>
+        <Button Style="{StaticResource ExchangeButton}" Command="{Binding ExchangeCommand}" Grid.Column="1" Grid.Row="2"  >
+            <TextBlock VerticalAlignment="Center" Margin="0 0 0 20" FontSize="100" Text="="/>
+
         </Button>
 
         <StackPanel Grid.Column="2" Grid.Row="0" Orientation="Horizontal">
@@ -52,13 +71,13 @@
         </StackPanel>
 
         <StackPanel Grid.Row="1" Grid.Column="2">
-            <TextBlock Text="{Binding TargetCurrency.Symbol}" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" FontSize="70" Foreground="{DynamicResource Surface}" Margin="20 0"/>
-            <TextBlock Text="{Binding TargetCurrency.PriceUsd, StringFormat={}{0:C}}"  HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="30" Foreground="{DynamicResource Surface}" Margin="20 10" />
+            <TextBlock Text="{Binding TargetCurrency.Symbol}" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" FontSize="70" Foreground="{DynamicResource Header}" Margin="20 0"/>
+            <TextBlock Text="{Binding TargetCurrency.PriceUsd, StringFormat={}{0:C}}"  HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="30" Foreground="{DynamicResource Header}" Margin="20 10" />
         </StackPanel>
 
         <StackPanel  Grid.Row="2" Grid.Column="2" Orientation="Horizontal">
-            <TextBlock Text="{Binding TargetCurrencyAmount, StringFormat={}{0:F2}}" VerticalAlignment="Center" FontSize="40" Foreground="{DynamicResource Surface}" />
-            <TextBlock Text="{Binding TargetCurrency.Symbol}" FontSize="40" VerticalAlignment="Center" Margin="20 0" Foreground="{DynamicResource Surface}"/>
+            <TextBlock Text="{Binding TargetCurrencyAmount, StringFormat={}{0:F2}}" VerticalAlignment="Center" FontSize="40" Foreground="{DynamicResource Header}" />
+            <TextBlock Text="{Binding TargetCurrency.Symbol}" FontSize="40" VerticalAlignment="Center" Margin="20 0" Foreground="{DynamicResource Header}"/>
         </StackPanel>
     </Grid>
 </Page>

@@ -17,8 +17,8 @@ namespace CryptoDataWpf.ViewModels
         private readonly ICurrencyDataService _apiService;
         private readonly ICurrencyCalculationsService _currencyCalculationsService;
 
-        private Currency _targetCurrency = new Currency { Symbol = "NO", PriceUsd=0};
-        private Currency _toBeExchangedCurrency = new Currency { Symbol = "NO", PriceUsd = 0 };
+        private Currency _targetCurrency = new Currency { Symbol = "NOT SELECTED", PriceUsd=0};
+        private Currency _toBeExchangedCurrency = new Currency { Symbol = "NOT SELECTED", PriceUsd = 0 };
         private string _toBeExchangedCurrencyCode;
         private string _targetCurrencyCode;
         private decimal _toBeExchangedCurrencyAmount = 1;
@@ -29,7 +29,7 @@ namespace CryptoDataWpf.ViewModels
             get => _targetCurrencyAmount;
             set
             {
-                _targetCurrencyAmount = value;
+                _targetCurrencyAmount = Math.Round(value, 2);
                 OnPropertyChanged(nameof(TargetCurrencyAmount));
             }
         }
@@ -108,8 +108,8 @@ namespace CryptoDataWpf.ViewModels
 
         private bool CanSwapCurrencies(object obj)
         {
-            return ToBeExchangedCurrency.Symbol != "NO" 
-                && TargetCurrency.Symbol != "NO"
+            return ToBeExchangedCurrency.Symbol != "NOT SELECTED"
+                && TargetCurrency.Symbol != "NOT SELECTED"
                 && TargetCurrency.Symbol != ToBeExchangedCurrency.Symbol;
         }
 

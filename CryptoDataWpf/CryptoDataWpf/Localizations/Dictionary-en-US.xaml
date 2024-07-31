@@ -5,6 +5,16 @@
     <System:String x:Key="TopCurrenciesHeader">Top currencies</System:String>
     <System:String x:Key="MenuOptionHome">Home</System:String>
     <System:String x:Key="MenuOptionExchanges">Exchanges</System:String>
+    <System:String x:Key="MenuOptionTheme">Theme</System:String>
+    <System:String x:Key="MenuOptionLocalization">Localization</System:String>
+
+    <System:String x:Key="CurrencyDataHeaderSupply">Supply</System:String>
+    <System:String x:Key="CurrencyDataHeaderMaxSupply">MaxSupply</System:String>
+    <System:String x:Key="CurrencyDataHeaderMarketCapitalization">MarketCapitalization</System:String>
+    <System:String x:Key="CurrencyDataHeaderVolume24Hr">Volume 24 Hr</System:String>
+    <System:String x:Key="CurrencyDataHeaderPrice">Price</System:String>
+    <System:String x:Key="CurrencyDataHeaderChange24Hr">Change 24 Hr</System:String>
+    <System:String x:Key="CurrencyDataHeaderVWAP24Hr">VWAP 24 Hr</System:String>
 
     <System:String x:Key="CurrencyCardLinkHeader">Market link</System:String>
 </ResourceDictionary>

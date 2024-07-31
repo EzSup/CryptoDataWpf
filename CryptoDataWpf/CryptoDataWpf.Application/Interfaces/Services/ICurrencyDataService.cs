@@ -9,7 +9,7 @@ namespace CryptoDataWpf.Application.Interfaces.Services
 {
     public interface ICurrencyDataService
     {
-        Task<ICollection<Currency>> GetAssets(string? search = null, int countLimit = 10);
+        Task<ICollection<Currency>> GetAssets(string? search = null, int countLimit = 20);
         Task<Currency> GetAsset(string search);
     }
 }

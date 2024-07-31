@@ -27,7 +27,7 @@ namespace CryptoDataWpf.Infrastructure.APIs
             public long Timestamp { get; set; }
         }
 
-        public async Task<ICollection<Currency>> GetAssets(string? search = null, int countLimit = 10)
+        public async Task<ICollection<Currency>> GetAssets(string? search = null, int countLimit = 20)
         {
             try
             {

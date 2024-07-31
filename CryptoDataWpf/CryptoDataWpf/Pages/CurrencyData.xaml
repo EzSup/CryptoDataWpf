@@ -12,7 +12,7 @@
     <Page.Resources>
         <Style x:Key="RowStyle" TargetType="TextBlock">
             <Setter Property="FontSize" Value="16"/>
-            <Setter Property="Foreground" Value="{DynamicResource Surface}"/>
+            <Setter Property="Foreground" Value="{DynamicResource Header}"/>
             <Setter Property="Margin" Value="20 0 0 0"/>
             <Setter Property="HorizontalAlignment" Value="Right"/>
             <Setter Property="FontStyle" Value="Italic"/>
@@ -33,7 +33,6 @@
                     <RowDefinition Height="Auto"></RowDefinition>
                     <RowDefinition ></RowDefinition>
                 </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" Grid.Column="0" Text="Currency data" Margin="20,10" Foreground="{DynamicResource Surface}" FontWeight="DemiBold"  FontSize="25"/>
                 <StackPanel Grid.Row="1" Grid.Column="0">
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -49,9 +48,9 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <TextBlock Grid.Column="0" Style="{StaticResource RowHeaderStyle}" Text="{Binding Currency.Name }" FontSize="40"/>
-                        <TextBlock Grid.Column="1" VerticalAlignment="Center" FontStyle="Italic" >
+                        <TextBlock Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right" FontStyle="Italic" >
                             <Hyperlink NavigateUri="{Binding Currency.Explorer}"  RequestNavigate="Hyperlink_RequestNavigate" TextDecorations="None">
-                                <TextBlock Style="{StaticResource RowStyle}" Text="Explorer link" TextDecorations="Underline"/>
+                                <TextBlock Style="{StaticResource RowStyle}" Foreground="{DynamicResource Header}" Text="Explorer link" TextDecorations="Underline"/>
                             </Hyperlink>
                         </TextBlock>
                     </Grid>
@@ -61,13 +60,13 @@
                             <ColumnDefinition></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <StackPanel Grid.Column="0">
-                            <TextBlock Style="{StaticResource RowHeaderStyle}" Text="Supply"/>
-                            <TextBlock Style="{StaticResource RowHeaderStyle}" Text="Max Supply"/>
-                            <TextBlock Style="{StaticResource RowHeaderStyle}" Text="Market Capitalization"/>
-                            <TextBlock Style="{StaticResource RowHeaderStyle}" Text="Volume 24 Hr"/>
-                            <TextBlock Style="{StaticResource RowHeaderStyle}" Text="Price"/>
-                            <TextBlock Style="{StaticResource RowHeaderStyle}" Text="Change 24Hr"/>
-                            <TextBlock Style="{StaticResource RowHeaderStyle}" Text="VWAP 24Hr"/>
+                            <TextBlock Style="{StaticResource RowHeaderStyle}" Text="{DynamicResource CurrencyDataHeaderSupply}"/>
+                            <TextBlock Style="{StaticResource RowHeaderStyle}" Text="{DynamicResource CurrencyDataHeaderMaxSupply}"/>
+                            <TextBlock Style="{StaticResource RowHeaderStyle}" Text="{DynamicResource CurrencyDataHeaderMarketCapitalization}"/>
+                            <TextBlock Style="{StaticResource RowHeaderStyle}" Text="{DynamicResource CurrencyDataHeaderVolume24Hr}"/>
+                            <TextBlock Style="{StaticResource RowHeaderStyle}" Text="{DynamicResource CurrencyDataHeaderPrice}"/>
+                            <TextBlock Style="{StaticResource RowHeaderStyle}" Text="{DynamicResource CurrencyDataHeaderChange24Hr}"/>
+                            <TextBlock Style="{StaticResource RowHeaderStyle}" Text="{DynamicResource CurrencyDataHeaderVWAP24Hr}"/>
                         </StackPanel>
                         <StackPanel Grid.Column="1">
                             <TextBlock Style="{StaticResource RowStyle}" HorizontalAlignment="Right" Text="{Binding Currency.Supply , StringFormat={}{0:F0}}"/>
@@ -81,9 +80,9 @@
                     </Grid>
                 </StackPanel>
                 <Grid Grid.Row="1" Grid.Column="1">
-                    <Grid Background="White" Margin="30">
-                        <lvc:CartesianChart Series="{Binding Series}" XAxes="{Binding XAxes}"></lvc:CartesianChart>
-                    </Grid>
+                    <Border Background="{DynamicResource Surface}" Margin="30" CornerRadius="40">
+                        <lvc:CartesianChart Series="{Binding Series}" XAxes="{Binding XAxes}" ></lvc:CartesianChart>
+                    </Border>
                     
                 </Grid>                
             </Grid>

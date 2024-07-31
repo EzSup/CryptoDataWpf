@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CryptoDataWpf.Application.Interfaces.Services;
 using System.Globalization;
+using CryptoDataWpf.Core.CustomExceptions;
 
 namespace CryptoDataWpf.Infrastructure.APIs
 {
@@ -34,7 +35,7 @@ namespace CryptoDataWpf.Infrastructure.APIs
                 response.EnsureSuccessStatusCode();
                 var responseBody = await response.Content.ReadAsStringAsync();
                 var result = JsonConvert.DeserializeObject<ApiResponse>(responseBody);
-                return result.Data.Select(data => new FinancialData(
+                var parsed =  result.Data.Select(data => new FinancialData(
                                 timestamp: long.Parse(data[0]),
                                 open: double.Parse(data[1], CultureInfo.InvariantCulture),
                                 high: double.Parse(data[2], CultureInfo.InvariantCulture),
@@ -44,17 +45,21 @@ namespace CryptoDataWpf.Infrastructure.APIs
                                 quoteVolume: decimal.Parse(data[6], CultureInfo.InvariantCulture)
                                 ))
                                 .ToList() ?? new List<FinancialData>();
+                if(parsed.Count == 0)
+                {
+                    throw new ArgumentNullException();
+                }
+                return parsed;
             }
-            catch (HttpRequestException ex)
+            catch (ArgumentNullException ex)
             {
-                Console.Error.WriteLine($"Request error: {ex.Message}");
-                return new List<FinancialData>();
+                throw new CurrencyNotFoundException($"{symbol} OHLC data not loaded!");
             }
-            catch (Exception ex)
-            {
-                Console.Error.WriteLine($"Unexpected error: {ex.Message}");
-                return new List<FinancialData>();
-            }
+            //catch (Exception ex)
+            //{
+            //    Console.Error.WriteLine($"Unexpected error: {ex.Message}");
+            //    return new List<FinancialData>();
+            //}
         }
     }
 }
