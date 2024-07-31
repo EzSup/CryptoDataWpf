@@ -99,7 +99,7 @@ namespace CryptoDataWpf.ViewModels
             }
             catch (CurrencyNotFoundException ex)
             {
-                string errorMessage = string.Format("Currency searching exception: {0}. Chart will be empty!", ex.Message);
+                string errorMessage = string.Format("Currency OHLC data searching exception: {0} Chart will be empty!", ex.Message);
                 MessageBox.Show(errorMessage, "Info", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }

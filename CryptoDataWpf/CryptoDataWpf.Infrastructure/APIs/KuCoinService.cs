@@ -53,7 +53,7 @@ namespace CryptoDataWpf.Infrastructure.APIs
             }
             catch (ArgumentNullException ex)
             {
-                throw new CurrencyNotFoundException($"{symbol} OHLC data not loaded!");
+                throw new CurrencyNotFoundException(symbol);
             }
             //catch (Exception ex)
             //{

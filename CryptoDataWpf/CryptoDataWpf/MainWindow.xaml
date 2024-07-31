@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CryptoDataWpf"
         mc:Ignorable="d"
-        Title="MainWindow" Height="520" Width="880" MinWidth="450" MinHeight="360"
-        Background="{DynamicResource Background}">
+        Title="CoinData" Height="520" Width="880" MinWidth="450" MinHeight="360"
+        Background="{DynamicResource Background}"
+        Icon="assets/images/logo.png">
     <Window.Resources>
         <ImageBrush x:Key="ToggleButtonMouseOver" ImageSource="assets/images/menu_active_img.png" />
 
@@ -276,10 +277,11 @@
 
         </Grid>
 
+        <TextBlock Text="{Binding CurrentView.Title}"  Margin="20,0,0,0" Foreground="{DynamicResource Header}" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold"  FontSize="25" Grid.Row="0" Grid.Column="1"/>
+        
         <StackPanel Orientation="Horizontal" FlowDirection="RightToLeft" Grid.Row="0" Grid.Column="1">
-            <TextBox Text="{Binding CurrencyCode}" Style="{StaticResource SearchInput}"></TextBox>
+            <TextBox Text="{Binding CurrencyCode}" Style="{StaticResource SearchInput}" ></TextBox>
             <Button Command="{Binding SearchCurrencyCommand}" Style="{StaticResource SearchButton}" />
-            <TextBlock Text="{Binding CurrentView.Title}"  Margin="20,0,0,0" Foreground="{DynamicResource Header}" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="DemiBold"  FontSize="25"/>
         </StackPanel>
         <Grid Height="5" Background="{DynamicResource Surface}"  Grid.Column="1" Grid.Row="1"/>
 
