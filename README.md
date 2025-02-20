@@ -4,7 +4,7 @@
 
 ### Опис проекту
 
-Цей проект є десктопним додатком для перегляду даних про криптовалюти. Він розроблений як тестове завдання і використовує технології C#/.NET, WPF, патерни MVVM та DI. Для отримання даних про криптовалюти використовуються API "CoinCap" та "KuCoin".
+Цей проект є десктопним додатком для перегляду даних про криптовалюти. Він використовує технології C#/.NET, WPF, патерни MVVM та DI. Для отримання даних про криптовалюти використовуються API "CoinCap" та "KuCoin".
 
 ### Функціонал (усі задачі ТЗ виконані)
 
@@ -44,7 +44,7 @@
 
 ### Project Description
 
-This project is a desktop application for viewing cryptocurrency data. It was developed as a test assignment and utilizes technologies such as C#/.NET, WPF, MVVM patterns, and DI. It retrieves cryptocurrency data using the "CoinCap" and "KuCoin" APIs.
+This project is a desktop application for viewing cryptocurrency data. It utilizes technologies such as C#/.NET, WPF, MVVM patterns, and DI. It retrieves cryptocurrency data using the "CoinCap" and "KuCoin" APIs.
 
 ### Features
 
