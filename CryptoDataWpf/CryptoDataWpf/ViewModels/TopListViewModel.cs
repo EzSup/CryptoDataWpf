@@ -1,4 +1,5 @@
 ﻿using CryptoDataWpf.Application.Interfaces.Services;
+using CryptoDataWpf.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -22,6 +23,24 @@ namespace CryptoDataWpf.ViewModels
         public async Task InitializeAsync()
         {
             await RefreshCurrenciesList();
+        }
+
+        public async Task LoadMore(int count = 20)
+        {
+            var additionalCurrencies = await _apiService.GetAssets(null, 20, Currencies.Count);
+            foreach (var currency in additionalCurrencies) 
+            {
+                Currencies.Add(new CurrencyViewModel
+                {
+                    Name = currency.Name,
+                    Symbol = currency.Symbol,
+                    Rank = currency.Rank,
+                    PriceUsd = currency.PriceUsd,
+                    ChangePercent24Hr = currency.ChangePercent24Hr,
+                    Vwap24Hr = currency.Vwap24Hr,
+                    Explorer = currency.Explorer
+                });
+            }
         }
 
         public async Task RefreshCurrenciesList()

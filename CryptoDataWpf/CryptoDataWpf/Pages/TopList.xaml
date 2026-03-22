@@ -57,7 +57,11 @@
     </Page.Resources>
 
     <Grid Background="{DynamicResource Background}">
-        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Grid.Row="0">
             <StackPanel>
                 <ItemsControl x:Name="ListViewCurrencies" ItemsSource="{Binding Currencies}">
                     <ItemsControl.ItemTemplate>
@@ -99,5 +103,8 @@
                 </ItemsControl>
             </StackPanel>
         </ScrollViewer>
+        <Button x:Name="loadMoreButton" Click="loadMoreButton_Click" Grid.Row="1">
+            Load more
+        </Button>
     </Grid>
 </Page>

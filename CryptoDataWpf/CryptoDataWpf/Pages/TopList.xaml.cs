@@ -46,5 +46,10 @@ namespace CryptoDataWpf.Pages
             System.Diagnostics.Process.Start(sInfo);
             e.Handled = true;
         }
+
+        private async void loadMoreButton_Click(object sender, RoutedEventArgs e)
+        {
+            await this._viewModel.LoadMore();
+        }
     }
 }

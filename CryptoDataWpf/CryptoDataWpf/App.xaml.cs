@@ -23,7 +23,10 @@ namespace CryptoDataWpf
             // CoinCap API for everything except OHLC charts data 
             services.AddHttpClient("CoinCap", client =>
             {
-                client.BaseAddress = new Uri("https://api.coincap.io/");
+                client.BaseAddress = new Uri("https://rest.coincap.io/");
+                client.DefaultRequestHeaders.Authorization =
+                    new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", "b61b1647104911a1f875a217962b7b13cceb111f0f04d85f46b2bbe4d17bf444");
+                //client.DefaultRequestHeaders.Add("Accept-Encoding", "gzip");
             });
             // KuCoin API for OHLC charts data 
             services.AddHttpClient("KuCoin", client =>

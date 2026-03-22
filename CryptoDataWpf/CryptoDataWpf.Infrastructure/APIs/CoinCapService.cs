@@ -1,14 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Net.Http;
-using System.Text.Json.Serialization;
-using Newtonsoft.Json;
-using CryptoDataWpf.Core.Models;
-using CryptoDataWpf.Application.Interfaces.Services;
+﻿using CryptoDataWpf.Application.Interfaces.Services;
 using CryptoDataWpf.Core.CustomExceptions;
+using CryptoDataWpf.Core.Models;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Net.Http;
+using System.Text;
+using System.Text.Json.Serialization;
+using System.Threading.Tasks;
 
 namespace CryptoDataWpf.Infrastructure.APIs
 {
@@ -27,13 +29,14 @@ namespace CryptoDataWpf.Infrastructure.APIs
             public long Timestamp { get; set; }
         }
 
-        public async Task<ICollection<Currency>> GetAssets(string? search = null, int countLimit = 20)
+        public async Task<ICollection<Currency>> GetAssets(string? search = null, int countLimit = 60, int offset = 0)
         {
             try
             {
-                var response = await _httpClient.GetAsync($"/v2/assets?limit={countLimit}&search={search}");
+                var response = await _httpClient.GetAsync($"/v3/assets?limit={countLimit}&search={search}&offset={offset}");
                 response.EnsureSuccessStatusCode();
                 var responseBody = await response.Content.ReadAsStringAsync();
+
                 var result = JsonConvert.DeserializeObject<ApiResponse>(responseBody);
                 return result.Data ?? new List<Currency>();
             }
