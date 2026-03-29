@@ -3,7 +3,9 @@
     "allow": [
       "Bash(pip install:*)",
       "Bash(python3 -c \":*)",
-      "Bash(python3:*)"
+      "Bash(python3:*)",
+      "Bash(grep -r \"StringFormat\\\\|:F0\\\\|:F2\\\\|:F4\\\\|:C\\\\|:P\" /c/Users/opana/source/repos/CryptoDataWpf/CryptoDataWpf/CryptoDataWpf --include=*.xaml)",
+      "Bash(dotnet build:*)"
     ]
   }
 }

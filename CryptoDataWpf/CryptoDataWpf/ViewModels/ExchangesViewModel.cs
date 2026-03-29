@@ -31,7 +31,7 @@ namespace CryptoDataWpf.ViewModels
             get => _targetCurrencyAmount;
             set
             {
-                _targetCurrencyAmount = Math.Round(value, 2);
+                _targetCurrencyAmount = Math.Round(value, 8);
                 OnPropertyChanged(nameof(TargetCurrencyAmount));
             }
         }

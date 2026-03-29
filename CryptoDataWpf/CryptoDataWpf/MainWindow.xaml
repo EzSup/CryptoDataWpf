@@ -232,6 +232,8 @@
                                 <MenuItem Tag="en-US" Header="English" Click="SetLanguageClick" />
                                 <MenuItem Tag="ge-GE" Header="Deutsch" Click="SetLanguageClick" />
                                 <MenuItem Tag="es-ES" Header="Español" Click="SetLanguageClick" />
+                                <MenuItem Tag="id-ID" Header="Bahasa Indonesia" Click="SetLanguageClick" />
+                                <MenuItem Tag="nl-NL" Header="Nederlands" Click="SetLanguageClick" />
                             </ContextMenu>
                         </ListViewItem.ContextMenu>
                     </ListViewItem>

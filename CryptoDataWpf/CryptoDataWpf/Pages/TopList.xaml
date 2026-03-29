@@ -4,11 +4,13 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:CryptoDataWpf.Pages"
-      mc:Ignorable="d" 
+      xmlns:conv="clr-namespace:CryptoDataWpf.Converters"
+      mc:Ignorable="d"
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Top List">
 
     <Page.Resources>
+        <conv:PriceFormatConverter x:Key="PriceFormatter"/>
         <Style x:Key="SymbolTextBlock" TargetType="TextBlock">
             <Setter Property="Margin" Value="5 0"/>
             <Setter Property="Foreground" Value="{DynamicResource Primary}"/>
@@ -66,7 +68,7 @@
                 <ItemsControl x:Name="ListViewCurrencies" ItemsSource="{Binding Currencies}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Border Margin="10 10 20 20" Width="126" Height="160"  CornerRadius="15">
+                            <Border Margin="10 10 20 20" Width="126" Height="160"  CornerRadius="15" Cursor="Hand" MouseLeftButtonUp="Card_MouseLeftButtonUp">
                                 <Border.Background>
                                     <LinearGradientBrush StartPoint="1,1" EndPoint="0,0">
                                         <GradientStop Color="{Binding Color, Source = {StaticResource CardBackground}}" Offset="0" />
@@ -79,7 +81,7 @@
                                 <StackPanel>
                                     <TextBlock Text="{Binding Symbol}" Style="{StaticResource SymbolTextBlock}" />
                                     <TextBlock Text="{Binding Name}"  Style="{StaticResource NameTextBlock}"/>
-                                    <TextBlock Text="{Binding PriceUsd, StringFormat={}{0:C}}" Style="{StaticResource PriceTextBlock}"/>
+                                    <TextBlock Text="{Binding PriceUsd, Converter={StaticResource PriceFormatter}, ConverterParameter=C}" Style="{StaticResource PriceTextBlock}"/>
                                     <WrapPanel Orientation="Horizontal" Margin="0 5">
                                         <TextBlock Text="24h%" Style="{StaticResource PercentageHeaderTextBlock}" />
                                         <TextBlock Text="{Binding ChangePercent24Hr, StringFormat={}{0:F}%}" Style="{StaticResource ChangePercentageTextBlock}"/>
@@ -103,8 +105,26 @@
                 </ItemsControl>
             </StackPanel>
         </ScrollViewer>
-        <Button x:Name="loadMoreButton" Click="loadMoreButton_Click" Grid.Row="1">
-            Load more
+        <Button x:Name="loadMoreButton" Click="loadMoreButton_Click" Grid.Row="1"
+                Height="40" Margin="10 5" Cursor="Hand"
+                Background="{DynamicResource Primary}" Foreground="{DynamicResource Surface}"
+                FontSize="16" FontWeight="SemiBold" Content="Load more">
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="Bd" Background="{TemplateBinding Background}"
+                            CornerRadius="10" Padding="20 8">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Bd" Property="Background" Value="{DynamicResource Secondary}"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="Bd" Property="Opacity" Value="0.8"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Button.Template>
         </Button>
     </Grid>
 </Page>

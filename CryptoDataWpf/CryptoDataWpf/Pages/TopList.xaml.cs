@@ -47,6 +47,19 @@ namespace CryptoDataWpf.Pages
             e.Handled = true;
         }
 
+        private void Card_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            if (sender is Border border && border.DataContext is CurrencyViewModel currency)
+            {
+                var mainWindow = Window.GetWindow(this);
+                if (mainWindow?.DataContext is MainWindowViewModel mainViewModel)
+                {
+                    mainViewModel.CurrencyCode = currency.Id;
+                    mainViewModel.SearchCurrencyCommand.Execute(null);
+                }
+            }
+        }
+
         private async void loadMoreButton_Click(object sender, RoutedEventArgs e)
         {
             await this._viewModel.LoadMore();

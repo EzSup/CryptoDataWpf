@@ -11,6 +11,7 @@ namespace CryptoDataWpf.ViewModels
 {
     public class CurrencyViewModel : INotifyPropertyChanged
     {
+        private string? _id;
         private string? _name;
         private string? _symbol;
         private int _rank;
@@ -19,6 +20,11 @@ namespace CryptoDataWpf.ViewModels
         private decimal _vwap24Hr;
         private string? _explorer;
 
+        public string? Id
+        {
+            get { return _id; }
+            set { _id = value; OnPropertyChanged(nameof(Id)); }
+        }
         public string? Name
         {
             get { return _name; }

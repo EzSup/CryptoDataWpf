@@ -4,12 +4,14 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:CryptoDataWpf.Pages"
+      xmlns:conv="clr-namespace:CryptoDataWpf.Converters"
       xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="CurrencyData">
 
     <Page.Resources>
+        <conv:PriceFormatConverter x:Key="PriceFormatter"/>
         <Style x:Key="RowStyle" TargetType="TextBlock">
             <Setter Property="FontSize" Value="16"/>
             <Setter Property="Foreground" Value="{DynamicResource Header}"/>
@@ -71,9 +73,9 @@
                         <StackPanel Grid.Column="1">
                             <TextBlock Style="{StaticResource RowStyle}" HorizontalAlignment="Right" Text="{Binding Currency.Supply , StringFormat={}{0:F0}}"/>
                             <TextBlock Style="{StaticResource RowStyle}" HorizontalAlignment="Right" Text="{Binding Currency.MaxSupply , StringFormat={}{0:F0} }"/>
-                            <TextBlock Style="{StaticResource RowStyle}" HorizontalAlignment="Right" Text="{Binding Currency.MarketCapUsd, StringFormat={}{0:C} }"/>
-                            <TextBlock Style="{StaticResource RowStyle}" HorizontalAlignment="Right" Text="{Binding Currency.VolumeUsd24Hr, StringFormat={}{0:C} }"/>
-                            <TextBlock Style="{StaticResource RowStyle}" HorizontalAlignment="Right" Text="{Binding Currency.PriceUsd, StringFormat={}{0:C} }"/>
+                            <TextBlock Style="{StaticResource RowStyle}" HorizontalAlignment="Right" Text="{Binding Currency.MarketCapUsd, StringFormat={}{0:C2} }"/>
+                            <TextBlock Style="{StaticResource RowStyle}" HorizontalAlignment="Right" Text="{Binding Currency.VolumeUsd24Hr, StringFormat={}{0:C2} }"/>
+                            <TextBlock Style="{StaticResource RowStyle}" HorizontalAlignment="Right" Text="{Binding Currency.PriceUsd, Converter={StaticResource PriceFormatter}, ConverterParameter=C}"/>
                             <TextBlock Style="{StaticResource RowStyle}" HorizontalAlignment="Right" Text="{Binding Currency.ChangePercent24Hr, StringFormat={}{0:F}% }"/>
                             <TextBlock Style="{StaticResource RowStyle}" HorizontalAlignment="Right" Text="{Binding Currency.Vwap24Hr, StringFormat={}{0:F0} }"/>
                         </StackPanel>

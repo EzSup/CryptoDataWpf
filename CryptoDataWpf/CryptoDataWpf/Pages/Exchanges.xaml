@@ -4,10 +4,12 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:CryptoDataWpf.Pages"
+      xmlns:conv="clr-namespace:CryptoDataWpf.Converters"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Exchanges">
     <Page.Resources>
+        <conv:PriceFormatConverter x:Key="PriceFormatter"/>
         <Style x:Key="ExchangeButton" TargetType="Button">
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="BorderThickness" Value="0"/>
@@ -54,7 +56,7 @@
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="0">
             <TextBlock Text="{Binding ToBeExchangedCurrency.Symbol}"  Style="{StaticResource BasicHeader}" FontWeight="Bold" FontSize="70"  />
-            <TextBlock Text="{Binding ToBeExchangedCurrency.PriceUsd, StringFormat={}{0:C}}" Style="{StaticResource BasicHeader}" />
+            <TextBlock Text="{Binding ToBeExchangedCurrency.PriceUsd, Converter={StaticResource PriceFormatter}, ConverterParameter=C}" Style="{StaticResource BasicHeader}" />
         </StackPanel>
 
         <StackPanel  Grid.Row="2" Orientation="Horizontal">
@@ -77,11 +79,11 @@
 
         <StackPanel Grid.Row="1" Grid.Column="2">
             <TextBlock Text="{Binding TargetCurrency.Symbol}" FontWeight="Bold" FontSize="70"  Style="{StaticResource BasicHeader}"/>
-            <TextBlock Text="{Binding TargetCurrency.PriceUsd, StringFormat={}{0:C}}"   Style="{StaticResource BasicHeader}"/>
+            <TextBlock Text="{Binding TargetCurrency.PriceUsd, Converter={StaticResource PriceFormatter}, ConverterParameter=C}"   Style="{StaticResource BasicHeader}"/>
         </StackPanel>
 
         <StackPanel  Grid.Row="2" Grid.Column="2" Orientation="Horizontal">
-            <TextBlock Text="{Binding TargetCurrencyAmount, StringFormat={}{0:F2}}"  Style="{StaticResource BasicHeader}" FontSize="40" />
+            <TextBlock Text="{Binding TargetCurrencyAmount, Converter={StaticResource PriceFormatter}, ConverterParameter=F}"  Style="{StaticResource BasicHeader}" FontSize="40" />
             <TextBlock Text="{Binding TargetCurrency.Symbol}" Style="{StaticResource BasicHeader}" FontSize="40"/>
         </StackPanel>
     </Grid>

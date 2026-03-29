@@ -32,6 +32,7 @@ namespace CryptoDataWpf.ViewModels
             {
                 Currencies.Add(new CurrencyViewModel
                 {
+                    Id = currency.Id,
                     Name = currency.Name,
                     Symbol = currency.Symbol,
                     Rank = currency.Rank,
@@ -53,6 +54,7 @@ namespace CryptoDataWpf.ViewModels
             {
                 Currencies.Add(new CurrencyViewModel
                 {
+                    Id = currency.Id,
                     Name = currency.Name,
                     Symbol = currency.Symbol,
                     Rank = currency.Rank,

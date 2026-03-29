@@ -1,0 +1,20 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:System="clr-namespace:System;assembly=mscorlib">
+    <System:String x:Key="MenuTitle">MENU</System:String>
+    <System:String x:Key="TopCurrenciesHeader">Mata uang teratas</System:String>
+    <System:String x:Key="MenuOptionHome">Beranda</System:String>
+    <System:String x:Key="MenuOptionExchanges">Pertukaran</System:String>
+    <System:String x:Key="MenuOptionTheme">Tema</System:String>
+    <System:String x:Key="MenuOptionLocalization">Lokalisasi</System:String>
+
+    <System:String x:Key="CurrencyDataHeaderSupply">Pasokan</System:String>
+    <System:String x:Key="CurrencyDataHeaderMaxSupply">Pasokan Maksimum</System:String>
+    <System:String x:Key="CurrencyDataHeaderMarketCapitalization">Kapitalisasi Pasar</System:String>
+    <System:String x:Key="CurrencyDataHeaderVolume24Hr">Volume 24 Jam</System:String>
+    <System:String x:Key="CurrencyDataHeaderPrice">Harga</System:String>
+    <System:String x:Key="CurrencyDataHeaderChange24Hr">Perubahan 24 Jam</System:String>
+    <System:String x:Key="CurrencyDataHeaderVWAP24Hr">VWAP 24 Jam</System:String>
+
+    <System:String x:Key="CurrencyCardLinkHeader">Tautan pasar</System:String>
+</ResourceDictionary>
