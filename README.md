@@ -1,4 +1,4 @@
-# README
+# CryptoDataWpf
 
 ## Українська (English version below)
 
@@ -38,6 +38,22 @@
 
 ![image](https://github.com/user-attachments/assets/9688e261-c984-44f4-a8fc-11337e714506)
 
+### Як запустити
+
+#### Вимоги
+
+- [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
+- [Visual Studio 2022](https://visualstudio.microsoft.com/) (з компонентом ".NET Desktop Development")
+
+#### Запуск
+
+1. Клонуйте репозиторій:
+   ```bash
+   git clone https://github.com/EzSup/CryptoDataWpf.git
+   ```
+2. Відкрийте файл `CryptoDataWpf.sln` у Visual Studio.
+3. Натисніть **F5** або кнопку **Start** для запуску проекту.
+
 ---
 
 ## English
@@ -76,5 +92,20 @@ This project is a desktop application for viewing cryptocurrency data. It utiliz
 
 **IMPORTANT!** Since different APIs are used to retrieve currency data, sometimes price charts for certain currencies may not load. In such cases, you might see a window with the message "Currency OHCL data searching exception". This is not an error in the program execution.
 
-
 ![image](https://github.com/user-attachments/assets/9688e261-c984-44f4-a8fc-11337e714506)
+
+### How to Run
+
+#### Prerequisites
+
+- [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
+- [Visual Studio 2022](https://visualstudio.microsoft.com/) (with ".NET Desktop Development" workload)
+
+#### Running the Project
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/EzSup/CryptoDataWpf.git
+   ```
+2. Open `CryptoDataWpf.sln` in Visual Studio.
+3. Press **F5** or click the **Start** button to run the project.
